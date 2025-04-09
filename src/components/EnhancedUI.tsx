@@ -3,28 +3,20 @@ import { GameState, Collectible, CharacterRelationships } from '../types/game';
 
 interface EnhancedUIProps {
   gameState: GameState;
-  onShowCollectibles: () => void;
-  onShowPathHistory: () => void;
   onShowRelationships: () => void;
   onShowCriticalAnalysis: () => void;
   onShowModernTranslation: () => void;
   onShowWhatIf: () => void;
   onShowCharacterPsychology: () => void;
-  onShowSettings: () => void;
-  onShowHelp: () => void;
 }
 
 export const EnhancedUI: React.FC<EnhancedUIProps> = ({
   gameState,
-  onShowCollectibles,
-  onShowPathHistory,
   onShowRelationships,
   onShowCriticalAnalysis,
   onShowModernTranslation,
   onShowWhatIf,
   onShowCharacterPsychology,
-  onShowSettings,
-  onShowHelp,
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSettings, setShowSettings] = useState(false);

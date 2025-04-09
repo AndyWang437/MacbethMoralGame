@@ -60,21 +60,21 @@ export interface CharacterRelationships {
 }
 
 export interface CriticalAnalysis {
-  interpretations: Array<{
+  interpretations: {
     title: string;
     description: string;
     critic: string;
-  }>;
-  criticQuotes: Array<{
+  }[];
+  criticQuotes: {
     text: string;
     critic: string;
     source?: string;
-  }>;
-  adaptations: Array<{
+  }[];
+  adaptations: {
     title: string;
     description: string;
-    differences?: string[];
-  }>;
+    differences: string[];
+  }[];
   themes?: Array<{
     name: string;
     analysis: string;

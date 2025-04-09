@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Scene, GameState, Collectible, CharacterRelationships, CriticalAnalysis, ModernTranslation, Choice } from '../types/game';
-import { EnhancedUI, CollectiblesModal, PathHistoryModal, RelationshipsModal } from './EnhancedUI';
-import { CriticalAnalysisModal, ModernTranslationModal } from './CriticalAnalysis';
+import { Scene, GameState, Choice } from '../types/game';
+import { EnhancedUI } from './EnhancedUI';
+import { CriticalAnalysisModal } from './CriticalAnalysisModal';
+import { ModernTranslationModal } from './ModernTranslationModal';
 import { WhatIfScenariosModal } from './WhatIfScenarios';
 import { CharacterPsychologyModal } from './CharacterPsychologyModal';
 import { updateGameState } from '../utils/gameState';
 import { getEnding } from '../utils/endings';
-import { getModernTranslation } from '../utils/translations';
 import { getCharacterPortrait } from '../utils/characters';
 import { AudioManager } from '../utils/audioEffects';
 
@@ -150,137 +150,60 @@ export const Game: React.FC<GameProps> = ({ scenes, onEndGame }) => {
   if (!currentScene) return null;
 
   return (
-    <div 
-      className="min-h-screen bg-macbeth-dark text-white relative transition-all duration-500"
-      style={{
-        ...getBackgroundColor(),
-        filter: gameState.ambition > 70 ? 'brightness(0.8)' : 'brightness(1)'
-      }}
-    >
-      {/* Blood splatter effects */}
-      {bloodSplatters.map(splatter => (
-        <div
-          key={splatter.id}
-          className="fixed w-32 h-32 blood-splatter"
-          style={{
-            left: `${splatter.x}%`,
-            top: `${splatter.y}%`,
-            backgroundImage: 'url(/images/blood-splatter.svg)',
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            pointerEvents: 'none'
-          }}
-        />
-      ))}
-
-      {/* Ambition effect overlay */}
-      {gameState.ambition > 70 && (
-        <div 
-          className="fixed inset-0 ambition-effect"
-          style={{
-            background: 'radial-gradient(circle, rgba(139,0,0,0.1) 0%, rgba(0,0,0,0) 70%)',
-            pointerEvents: 'none'
-          }}
-        />
-      )}
-
-      {/* Enhanced UI */}
+    <div className="game-container">
       <EnhancedUI
         gameState={gameState}
-        onShowCollectibles={() => setShowCollectibles(true)}
-        onShowPathHistory={() => setShowPathHistory(true)}
         onShowRelationships={() => setShowRelationships(true)}
         onShowCriticalAnalysis={() => setShowCriticalAnalysis(true)}
         onShowModernTranslation={() => setShowModernTranslation(true)}
         onShowWhatIf={() => setShowWhatIf(true)}
         onShowCharacterPsychology={() => setShowCharacterPsychology(true)}
-        onShowSettings={() => setShowSettings(true)}
-        onShowHelp={() => setShowHelp(true)}
       />
 
-      {/* Main content */}
-      <div className="max-w-4xl mx-auto pt-32 px-4 pb-8">
-        <h1 className="text-3xl font-serif text-macbeth-gold mb-4">{currentScene.title}</h1>
-        <div className="bg-gray-800 p-6 rounded-lg shadow-lg border border-macbeth-gold">
-          <p className="text-lg mb-4">{currentScene.text}</p>
-          {currentScene.quote && (
-            <blockquote className="border-l-4 border-macbeth-gold pl-4 italic mb-4">
-              {currentScene.quote}
-            </blockquote>
-          )}
-          <div className="space-y-4">
-            {currentScene.choices.map((choice, index) => (
-              <button
-                key={index}
-                onClick={() => handleChoice(choice)}
-                className="w-full bg-macbeth-dark hover:bg-macbeth-red text-white px-6 py-3 rounded-lg transition-colors border border-macbeth-gold hover:border-macbeth-red"
-              >
-                {choice.text}
-              </button>
-            ))}
-          </div>
+      {/* Main game content */}
+      <div className="scene-container">
+        <h1>{currentScene.title}</h1>
+        <p>{currentScene.text}</p>
+        
+        {currentScene.quote && (
+          <blockquote>
+            {currentScene.quote}
+            <cite>{currentScene.quoteSource}</cite>
+          </blockquote>
+        )}
+
+        <div className="choices">
+          {currentScene.choices.map((choice) => (
+            <button
+              key={choice.label}
+              onClick={() => handleChoice(choice)}
+              className="choice-button"
+            >
+              {choice.text}
+            </button>
+          ))}
         </div>
       </div>
 
       {/* Modals */}
-      {showCollectibles && (
-        <CollectiblesModal
-          collectibles={gameState.collectibles}
-          onClose={() => setShowCollectibles(false)}
-        />
-      )}
-
-      {showPathHistory && (
-        <PathHistoryModal
-          pathHistory={gameState.pathHistory}
-          onClose={() => setShowPathHistory(false)}
-        />
-      )}
-
-      {showRelationships && (
-        <RelationshipsModal
-          relationships={gameState.relationships}
-          onClose={() => setShowRelationships(false)}
-        />
-      )}
-
       {showCriticalAnalysis && currentScene.criticalLens && (
         <CriticalAnalysisModal
-          analysis={currentScene.criticalLens}
-          quote={currentScene.quote || ''}
+          criticalLens={currentScene.criticalLens}
           onClose={() => setShowCriticalAnalysis(false)}
         />
       )}
 
-      {showModernTranslation && currentScene.modernTranslation && (
-        <ModernTranslationModal
-          translation={currentScene.modernTranslation}
-          onClose={() => setShowModernTranslation(false)}
-        />
-      )}
-
-      {showWhatIf && (
+      {showWhatIf && currentScene.whatIfScenarios && (
         <WhatIfScenariosModal
-          scenarios={currentScene.whatIfScenarios || []}
+          scenarios={currentScene.whatIfScenarios}
           onClose={() => setShowWhatIf(false)}
         />
       )}
 
       {showCharacterPsychology && (
         <CharacterPsychologyModal
-          scene={currentScene}
           onClose={() => setShowCharacterPsychology(false)}
         />
-      )}
-
-      {currentScene.quote && (
-        <div className="mt-6 p-4 bg-gray-700 rounded-lg">
-          <img
-            src={getCharacterPortrait(currentScene.quoteSource || 'default')}
-            alt={currentScene.quoteSource || 'Character'}
-            className="w-16 h-16 rounded-full border-2 border-macbeth-gold"
-          />
-        </div>
       )}
     </div>
   );
