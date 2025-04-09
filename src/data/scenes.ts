@@ -32,7 +32,7 @@ export const scenes: Scene[] = [
       {
         label: "D",
         text: "Share your concerns with Banquo about the witches' intentions.",
-        nextScene: "scene2D",
+        nextScene: "scene2A",
         ambitionChange: -5,
         guiltChange: 0
       }
@@ -616,28 +616,28 @@ export const scenes: Scene[] = [
       {
         label: "A",
         text: "Confess your crime and face the consequences",
-        nextScene: "scene4A",
+        nextScene: "scene3E",
         ambitionChange: -20,
         guiltChange: -10
       },
       {
         label: "B",
         text: "Kill the guards to cover your tracks",
-        nextScene: "scene4B",
+        nextScene: "scene3F",
         ambitionChange: +30,
         guiltChange: +20
       },
       {
         label: "C",
         text: "Frame someone else for the murder",
-        nextScene: "scene4C",
+        nextScene: "scene3G",
         ambitionChange: +25,
         guiltChange: +15
       },
       {
         label: "D",
         text: "Seek guidance from Lady Macbeth",
-        nextScene: "scene4D",
+        nextScene: "scene3H",
         ambitionChange: +15,
         guiltChange: +10
       }
@@ -723,6 +723,89 @@ export const scenes: Scene[] = [
           "The supernatural elements might be more ambiguous",
           "Different power dynamics might have emerged",
           "The investigation might have taken a different turn"
+        ]
+      }
+    ]
+  },
+  {
+    id: "scene3E",
+    title: "The Confession",
+    text: "You confess to the murder of Duncan. The court is in shock. Lady Macbeth tries to intervene, claiming you are not in your right mind. The guards and nobles are torn between their loyalty to the crown and their horror at your admission.",
+    quote: "I have done the deed. Didst thou not hear a noise?",
+    quoteSource: "Act 2, Scene 2",
+    choices: [
+      {
+        label: "A",
+        text: "Stand by your confession and accept the consequences",
+        nextScene: "scene4A",
+        ambitionChange: -30,
+        guiltChange: -20
+      },
+      {
+        label: "B",
+        text: "Retract your confession, claiming temporary madness",
+        nextScene: "scene3F",
+        ambitionChange: +10,
+        guiltChange: +10
+      },
+      {
+        label: "C",
+        text: "Accuse Lady Macbeth of forcing you into the act",
+        nextScene: "scene3G",
+        ambitionChange: +5,
+        guiltChange: +15
+      },
+      {
+        label: "D",
+        text: "Claim the witches made you do it",
+        nextScene: "scene3H",
+        ambitionChange: 0,
+        guiltChange: +5
+      }
+    ],
+    criticalLens: {
+      interpretations: [
+        {
+          title: "The Nature of Confession",
+          description: "Macbeth's confession reveals the psychological toll of his actions and the conflict between guilt and ambition.",
+          critic: "Dr. Emily Wilson"
+        }
+      ],
+      quotes: [
+        {
+          text: "The confession scene marks a crucial turning point in Macbeth's moral journey.",
+          critic: "Prof. James Thompson"
+        }
+      ],
+      adaptations: [
+        {
+          title: "Macbeth (2015)",
+          description: "Justin Kurzel's adaptation emphasizes the psychological impact of confession through intense close-ups and sound design.",
+          differences: [
+            "Focus on facial expressions",
+            "Use of silence and ambient sound",
+            "Emphasis on psychological tension"
+          ]
+        }
+      ]
+    },
+    modernTranslation: {
+      original: "I have done the deed. Didst thou not hear a noise?",
+      modern: "I've committed the murder. Didn't you hear anything?",
+      explanation: "Macbeth's confession to Lady Macbeth reveals his immediate guilt and paranoia after the murder."
+    },
+    whatIfScenarios: [
+      {
+        id: "whatif4",
+        title: "What if Macbeth had confessed publicly?",
+        description: "Exploring how a public confession might have changed the course of events.",
+        originalChoice: "Confess your crime and face the consequences",
+        alternativeChoice: "Confess publicly in front of the entire court",
+        consequences: [
+          "Immediate arrest and trial",
+          "Lady Macbeth's role might be exposed",
+          "The witches' influence might be investigated",
+          "Different power dynamics in Scotland"
         ]
       }
     ]
@@ -1823,6 +1906,255 @@ export const scenes: Scene[] = [
           "Different power dynamics might have emerged",
           "The cycle of violence might have continued",
           "The kingdom might have suffered more"
+        ]
+      }
+    ]
+  },
+  {
+    id: "scene3F",
+    title: "The Guards' Fate",
+    text: "You kill the guards to cover your tracks. Their blood stains your hands and clothes. The other guards and nobles are suspicious, but your position as Thane of Cawdor gives you authority. Lady Macbeth helps you clean up and maintain your composure.",
+    quote: "The sleeping and the dead are but as pictures; 'tis the eye of childhood that fears a painted devil.",
+    quoteSource: "Act 2, Scene 2",
+    choices: [
+      {
+        label: "A",
+        text: "Claim the guards were the murderers",
+        nextScene: "scene4B",
+        ambitionChange: +20,
+        guiltChange: +15
+      },
+      {
+        label: "B",
+        text: "Express regret for killing the guards",
+        nextScene: "scene3E",
+        ambitionChange: -10,
+        guiltChange: +10
+      },
+      {
+        label: "C",
+        text: "Blame the guards' deaths on an intruder",
+        nextScene: "scene3G",
+        ambitionChange: +15,
+        guiltChange: +10
+      },
+      {
+        label: "D",
+        text: "Seek Lady Macbeth's help to maintain the lie",
+        nextScene: "scene3H",
+        ambitionChange: +10,
+        guiltChange: +5
+      }
+    ],
+    criticalLens: {
+      interpretations: [
+        {
+          title: "The Psychology of Cover-up",
+          description: "Macbeth's decision to kill the guards reveals his growing willingness to commit further violence to maintain his position.",
+          critic: "Dr. Sarah Johnson"
+        }
+      ],
+      quotes: [
+        {
+          text: "The murder of the guards marks a point of no return in Macbeth's descent into tyranny.",
+          critic: "Prof. Michael Brown"
+        }
+      ],
+      adaptations: [
+        {
+          title: "Macbeth (2010)",
+          description: "Patrick Stewart's portrayal emphasizes the cold calculation behind killing the guards.",
+          differences: [
+            "Modern military setting",
+            "Emphasis on chain of command",
+            "Focus on political implications"
+          ]
+        }
+      ]
+    },
+    modernTranslation: {
+      original: "The sleeping and the dead are but as pictures; 'tis the eye of childhood that fears a painted devil.",
+      modern: "The sleeping and the dead are just like pictures; only a child would be afraid of a painted devil.",
+      explanation: "Lady Macbeth tries to rationalize the murders, suggesting that only the weak would be troubled by them."
+    },
+    whatIfScenarios: [
+      {
+        id: "whatif5",
+        title: "What if the guards had survived?",
+        description: "Exploring how the guards' survival might have changed the course of events.",
+        originalChoice: "Kill the guards to cover your tracks",
+        alternativeChoice: "Let the guards live and try to convince them to stay silent",
+        consequences: [
+          "Potential witnesses to the crime",
+          "Different power dynamics in the castle",
+          "Possibility of blackmail or betrayal",
+          "Alternative paths to maintaining power"
+        ]
+      }
+    ]
+  },
+  {
+    id: "scene3G",
+    title: "The Frame-up",
+    text: "You decide to frame someone else for Duncan's murder. The evidence you plant points to one of Duncan's loyal servants. The court is in chaos, with accusations flying and trust breaking down among the nobles.",
+    quote: "False face must hide what the false heart doth know.",
+    quoteSource: "Act 1, Scene 7",
+    choices: [
+      {
+        label: "A",
+        text: "Strengthen the evidence against your chosen scapegoat",
+        nextScene: "scene4C",
+        ambitionChange: +25,
+        guiltChange: +20
+      },
+      {
+        label: "B",
+        text: "Show mercy to the accused but maintain their guilt",
+        nextScene: "scene3F",
+        ambitionChange: +10,
+        guiltChange: +15
+      },
+      {
+        label: "C",
+        text: "Let the accused defend themselves",
+        nextScene: "scene3E",
+        ambitionChange: -5,
+        guiltChange: +10
+      },
+      {
+        label: "D",
+        text: "Seek Lady Macbeth's advice on the frame-up",
+        nextScene: "scene3H",
+        ambitionChange: +15,
+        guiltChange: +10
+      }
+    ],
+    criticalLens: {
+      interpretations: [
+        {
+          title: "The Nature of Deception",
+          description: "Macbeth's decision to frame an innocent person reveals his growing moral corruption and political cunning.",
+          critic: "Dr. Emily Wilson"
+        }
+      ],
+      quotes: [
+        {
+          text: "The frame-up scene demonstrates how power corrupts and how the innocent often suffer for the crimes of the powerful.",
+          critic: "Prof. James Thompson"
+        }
+      ],
+      adaptations: [
+        {
+          title: "Macbeth (2015)",
+          description: "Justin Kurzel's adaptation emphasizes the political implications of the frame-up.",
+          differences: [
+            "Focus on court politics",
+            "Emphasis on power dynamics",
+            "Modern parallels to political corruption"
+          ]
+        }
+      ]
+    },
+    modernTranslation: {
+      original: "False face must hide what the false heart doth know.",
+      modern: "A false appearance must hide what the deceitful heart knows.",
+      explanation: "Macbeth acknowledges the need to maintain a facade while knowing the truth of his actions."
+    },
+    whatIfScenarios: [
+      {
+        id: "whatif6",
+        title: "What if the frame-up was discovered?",
+        description: "Exploring how the discovery of the frame-up might have changed the course of events.",
+        originalChoice: "Frame someone else for the murder",
+        alternativeChoice: "The frame-up is discovered by a clever noble",
+        consequences: [
+          "Loss of trust among the nobles",
+          "Potential rebellion",
+          "Different power dynamics in the court",
+          "Alternative paths to maintaining control"
+        ]
+      }
+    ]
+  },
+  {
+    id: "scene3H",
+    title: "Lady Macbeth's Counsel",
+    text: "You seek Lady Macbeth's guidance in the aftermath of Duncan's murder. She is both supportive and calculating, helping you maintain your composure while planning the next steps. Her strength contrasts with your growing unease.",
+    quote: "What's done cannot be undone.",
+    quoteSource: "Act 5, Scene 1",
+    choices: [
+      {
+        label: "A",
+        text: "Follow her advice to maintain power",
+        nextScene: "scene4D",
+        ambitionChange: +20,
+        guiltChange: +10
+      },
+      {
+        label: "B",
+        text: "Express your growing guilt and doubt",
+        nextScene: "scene3E",
+        ambitionChange: -10,
+        guiltChange: +15
+      },
+      {
+        label: "C",
+        text: "Question her role in the murder",
+        nextScene: "scene3F",
+        ambitionChange: -5,
+        guiltChange: +10
+      },
+      {
+        label: "D",
+        text: "Blame the witches for influencing you both",
+        nextScene: "scene3G",
+        ambitionChange: 0,
+        guiltChange: +5
+      }
+    ],
+    criticalLens: {
+      interpretations: [
+        {
+          title: "Gender and Power",
+          description: "Lady Macbeth's role in guiding Macbeth reveals the complex dynamics of gender and power in the play.",
+          critic: "Dr. Sarah Johnson"
+        }
+      ],
+      criticQuotes: [
+        {
+          text: "The scene highlights the shifting power dynamic between Macbeth and Lady Macbeth.",
+          critic: "Prof. Michael Brown"
+        }
+      ],
+      adaptations: [
+        {
+          title: "Macbeth (2010)",
+          description: "Patrick Stewart's adaptation emphasizes the psychological complexity of the Macbeths' relationship.",
+          differences: [
+            "Focus on marital dynamics",
+            "Emphasis on power sharing",
+            "Modern parallels to power couples"
+          ]
+        }
+      ]
+    },
+    modernTranslation: {
+      original: "What's done cannot be undone.",
+      modern: "What's done is done and can't be changed.",
+      explanation: "Lady Macbeth acknowledges the irreversible nature of their actions while trying to move forward."
+    },
+    whatIfScenarios: [
+      {
+        id: "whatif7",
+        title: "What if Lady Macbeth had shown remorse?",
+        description: "Exploring how Lady Macbeth's potential remorse might have changed the course of events.",
+        originalChoice: "Seek Lady Macbeth's guidance",
+        alternativeChoice: "Lady Macbeth shows signs of guilt and regret",
+        consequences: [
+          "Different power dynamics in their relationship",
+          "Alternative approaches to maintaining power",
+          "Potential for redemption or confession",
+          "Changed psychological impact on both characters"
         ]
       }
     ]
