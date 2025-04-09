@@ -18,9 +18,6 @@ export const EnhancedUI: React.FC<EnhancedUIProps> = ({
   onShowWhatIf,
   onShowCharacterPsychology,
 }) => {
-  const [showMenu, setShowMenu] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
-
   return (
     <div className="fixed top-0 left-0 right-0 bg-macbeth-dark border-b border-macbeth-gold p-4 shadow-xl z-50">
       <div className="max-w-7xl mx-auto">

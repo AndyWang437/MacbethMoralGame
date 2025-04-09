@@ -38,9 +38,15 @@ export interface GameState {
   currentScene: string;
   ambition: number;
   guilt: number;
-  pathHistory: string[];
-  relationships: CharacterRelationships;
-  collectibles: Collectible[];
+  pathHistory?: string[];
+  collectibles?: Collectible[];
+  relationships: {
+    [key: string]: {
+      trust: number;
+      loyalty: number;
+      fear: number;
+    };
+  };
 }
 
 export interface Collectible {
@@ -74,6 +80,10 @@ export interface CriticalAnalysis {
     title: string;
     description: string;
     differences: string[];
+  }[];
+  quotes?: {
+    text: string;
+    source: string;
   }[];
   themes?: Array<{
     name: string;

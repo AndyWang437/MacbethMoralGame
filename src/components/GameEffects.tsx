@@ -45,12 +45,10 @@ export const GameEffects: React.FC<GameEffectsProps> = ({
     transitionSound.volume = 0.5;
     transitionSound.play().catch(console.error);
 
-    // Play quote voice-over if available
-    if (currentScene.quote) {
-      const quoteAudio = new Audio(getQuoteAudio(currentScene.quote));
-      quoteAudio.volume = 0.7;
-      quoteAudio.play().catch(console.error);
-    }
+    // Play quote audio if available
+    const quoteAudio = new Audio(getQuoteAudio());
+    quoteAudio.volume = 0.7;
+    quoteAudio.play().catch(console.error);
 
     // Start transition animation
     if (isTransitioning) {
@@ -103,8 +101,7 @@ function getSceneAudio(sceneId: string): string | null {
   return audioMap[sceneId] || null;
 }
 
-function getQuoteAudio(quote: string): string {
-  // This would map specific quotes to their voice-over files
-  // For now, return a default voice-over
-  return '/sounds/quote-voice-over.mp3';
+function getQuoteAudio(): string {
+  // Return a default audio file path
+  return '/audio/default-quote.mp3';
 } 

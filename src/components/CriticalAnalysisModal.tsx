@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scene, CriticalAnalysis } from '../types/game';
+import { CriticalAnalysis } from '../types/game';
 
 interface CriticalAnalysisModalProps {
   criticalLens: CriticalAnalysis;

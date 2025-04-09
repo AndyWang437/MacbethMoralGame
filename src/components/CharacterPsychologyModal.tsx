@@ -1,32 +1,7 @@
 import React from 'react';
-import { Scene } from '../types/game';
 
 interface CharacterPsychologyModalProps {
   onClose: () => void;
-}
-
-interface CharacterMotivation {
-  character: string;
-  analysis: string;
-  quote: string;
-}
-
-interface PsychologicalState {
-  character: string;
-  analysis: string;
-  mentalState: string;
-}
-
-interface ModernPerspective {
-  character: string;
-  analysis: string;
-  diagnosis: string;
-}
-
-interface CharacterDevelopment {
-  character: string;
-  analysis: string;
-  turningPoint: string;
 }
 
 export const CharacterPsychologyModal: React.FC<CharacterPsychologyModalProps> = ({
