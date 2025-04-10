@@ -16,10 +16,5 @@
       ]
     }
   ],
-  "public": true,
-  "protection": {
-    "auth": {
-      "enable": false
-    }
-  }
+  "public": true
 } 
