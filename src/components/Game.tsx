@@ -56,11 +56,6 @@ export const Game: React.FC<GameProps> = ({ scenes, onEndGame }) => {
       <EnhancedUI
         gameState={gameState}
         onShowRelationships={() => setShowRelationships(true)}
-        onShowCriticalAnalysis={() => setShowCriticalAnalysis(true)}
-        onShowModernTranslation={() => {}}
-        onShowWhatIf={() => setShowWhatIf(true)}
-        onShowCharacterPsychology={() => setShowCharacterPsychology(true)}
-        onShowCollectibles={() => setShowCollectibles(true)}
         onShowPathHistory={() => setShowPathHistory(true)}
         onShowSettings={() => setShowSettings(true)}
         onShowHelp={() => setShowHelp(true)}

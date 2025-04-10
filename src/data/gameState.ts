@@ -3,6 +3,7 @@ import { GameState } from '../types/game';
 export const initialGameState: GameState = {
   currentScene: "scene1A",
   ambition: 0,
+  guilt: 0,
   pathHistory: [],
   collectibles: [],
   relationships: {
