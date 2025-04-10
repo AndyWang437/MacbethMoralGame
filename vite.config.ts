@@ -17,5 +17,18 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      },
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'favicon.ico') {
+            return 'favicon.ico'
+          }
+          return 'assets/[name]-[hash].[ext]'
+        }
+      }
+    },
   },
 }) 
