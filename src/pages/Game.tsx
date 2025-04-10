@@ -90,6 +90,7 @@ export default function Game() {
       <GameEffects
         currentScene={currentScene}
         isTransitioning={isTransitioning}
+        gameState={gameState}
         onTransitionComplete={handleTransitionComplete}
       />
       

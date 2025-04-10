@@ -36,6 +36,7 @@ export default {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'float': 'float 6s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
+        'glitch': 'glitch 0.5s ease-in-out infinite',
       },
       keyframes: {
         flicker: {
@@ -44,11 +45,19 @@ export default {
         },
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(-20px) translateX(10px)' },
         },
         glow: {
           '0%': { boxShadow: '0 0 5px #D4AF37, 0 0 10px #D4AF37, 0 0 15px #D4AF37' },
           '100%': { boxShadow: '0 0 10px #D4AF37, 0 0 20px #D4AF37, 0 0 30px #D4AF37' },
+        },
+        glitch: {
+          '0%': { transform: 'translate(0)' },
+          '20%': { transform: 'translate(-5px, 5px)' },
+          '40%': { transform: 'translate(-5px, -5px)' },
+          '60%': { transform: 'translate(5px, 5px)' },
+          '80%': { transform: 'translate(5px, -5px)' },
+          '100%': { transform: 'translate(0)' },
         },
       },
     },
