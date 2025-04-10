@@ -31,9 +31,11 @@ export const GameEffects: React.FC<GameEffectsProps> = ({
   // Determine grayscale and blur levels based on ambition
   const getAmbitionEffects = () => {
     const { ambition } = gameState;
-    // Make grayscale effect more pronounced - scale from 0% to 100%
-    const grayscaleValue = Math.min(ambition, 100); 
-    const blurValue = ambition > 65 ? Math.min((ambition - 65) / 10, 1) : 0;
+    // Start bright (minimal grayscale) and increase as ambition rises
+    // At ambition 50 (starting value), grayscale is only 10%
+    // At ambition 100, grayscale reaches 100%
+    const grayscaleValue = Math.max(0, (ambition - 40) * 2); 
+    const blurValue = ambition > 75 ? Math.min((ambition - 75) / 10, 1) : 0;
     
     return {
       filter: `grayscale(${grayscaleValue}%) blur(${blurValue}px)`,
