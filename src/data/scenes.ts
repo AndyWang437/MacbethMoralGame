@@ -4,7 +4,7 @@ export const scenes: Scene[] = [
   {
     id: "scene1",
     title: "The Witches' Prophecy",
-    text: "You encounter three witches who prophesy that you will become Thane of Cawdor and then King. Their words fill you with both excitement and unease.",
+    text: "You encounter three witches who prophecy that you will become Thane of Cawdor and then King. Their words fill you with both excitement and unease.",
     quote: "All hail, Macbeth! Hail to thee, Thane of Cawdor! All hail, Macbeth, that shalt be king hereafter!",
     quoteSource: "First Witch, Act 1, Scene 3",
     choices: [
