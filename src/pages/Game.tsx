@@ -86,7 +86,7 @@ export default function Game() {
   }
 
   return (
-    <div className="min-h-screen p-8 max-w-4xl mx-auto relative">
+    <div className="min-h-screen p-8 max-w-4xl mx-auto relative game-container">
       <GameEffects
         currentScene={currentScene}
         isTransitioning={isTransitioning}

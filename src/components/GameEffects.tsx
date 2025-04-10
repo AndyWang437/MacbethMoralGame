@@ -31,14 +31,25 @@ export const GameEffects: React.FC<GameEffectsProps> = ({
   // Determine grayscale and blur levels based on ambition
   const getAmbitionEffects = () => {
     const { ambition } = gameState;
-    const grayscaleValue = Math.min(ambition / 1.25, 80); // Max 80% grayscale
-    const blurValue = ambition > 65 ? Math.min((ambition - 65) / 10, 1) : 0; // Blur at high ambition
+    // Make grayscale effect more pronounced - scale from 0% to 100%
+    const grayscaleValue = Math.min(ambition, 100); 
+    const blurValue = ambition > 65 ? Math.min((ambition - 65) / 10, 1) : 0;
     
     return {
       filter: `grayscale(${grayscaleValue}%) blur(${blurValue}px)`,
       transition: 'filter 1.5s ease-in-out'
     };
   };
+
+  // Apply grayscale effect to the entire game container
+  useEffect(() => {
+    const gameContainer = document.querySelector('.game-container') as HTMLElement;
+    if (gameContainer) {
+      const { filter, transition } = getAmbitionEffects();
+      gameContainer.style.filter = filter;
+      gameContainer.style.transition = transition;
+    }
+  }, [gameState.ambition]);
 
   // Show blood splatters based on ambition level
   useEffect(() => {
@@ -165,7 +176,6 @@ export const GameEffects: React.FC<GameEffectsProps> = ({
       <div 
         ref={backgroundRef} 
         className="fixed inset-0 transition-all duration-1000"
-        style={getAmbitionEffects()} 
       />
       
       {/* Blood stains */}

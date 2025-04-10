@@ -55,6 +55,11 @@
   .flame-effect {
     @apply animate-flicker;
   }
+  
+  .game-container {
+    @apply relative;
+    /* Grayscale effect will be applied via React inline styles */
+  }
 }
 
 @keyframes fadeIn {
