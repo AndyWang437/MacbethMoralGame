@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/MacbethMoralGame/' : '/',
+  base: '/MacbethMoralGame/',
   plugins: [react()],
   server: {
     port: 3000,
