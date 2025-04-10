@@ -5,7 +5,7 @@ import { getBloodSplatterDataURI, getWitchHallucinationDataURI, getBanquoGhostDa
 interface GameEffectsProps {
   currentScene: Scene;
   isTransitioning: boolean;
-  gameState: GameState;  // Added gameState prop to track ambition
+  gameState: GameState;
   onTransitionComplete: () => void;
 }
 
@@ -17,10 +17,10 @@ export const GameEffects: React.FC<GameEffectsProps> = ({
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
-  const [bloodCount, setBloodCount] = useState<number>(3); // Start with some blood
-  const [showHallucination, setShowHallucination] = useState<boolean>(true); // Always show for testing
-  const [showGhost, setShowGhost] = useState<boolean>(true); // Always show for testing
-  const [whisperText, setWhisperText] = useState<string>("All hail, Macbeth! That shalt be king hereafter!");
+  const [bloodCount, setBloodCount] = useState<number>(0); // Start with no blood
+  const [showHallucination, setShowHallucination] = useState<boolean>(false); // Don't show initially
+  const [showGhost, setShowGhost] = useState<boolean>(false); // Don't show initially
+  const [whisperText, setWhisperText] = useState<string>("");
   
   // Get data URIs for our visual effects
   const bloodSplatterURI = getBloodSplatterDataURI();
@@ -31,8 +31,8 @@ export const GameEffects: React.FC<GameEffectsProps> = ({
   // Determine grayscale and blur levels based on ambition
   const getAmbitionEffects = () => {
     const { ambition } = gameState;
-    const grayscaleValue = Math.min(ambition, 80); // Max 80% grayscale, increased effect
-    const blurValue = ambition > 50 ? Math.min((ambition - 50) / 10, 1) : 0; // Blur at high ambition
+    const grayscaleValue = Math.min(ambition / 1.25, 80); // Max 80% grayscale
+    const blurValue = ambition > 65 ? Math.min((ambition - 65) / 10, 1) : 0; // Blur at high ambition
     
     return {
       filter: `grayscale(${grayscaleValue}%) blur(${blurValue}px)`,
@@ -42,28 +42,65 @@ export const GameEffects: React.FC<GameEffectsProps> = ({
 
   // Show blood splatters based on ambition level
   useEffect(() => {
-    // Add more blood as ambition increases
-    const targetBloodCount = Math.floor(gameState.ambition / 10) + 3; // More blood
+    // Add more blood as ambition increases - gradually scale from none to many
+    const targetBloodCount = Math.floor(gameState.ambition / 10); // 0 to ~10 bloodstains as ambition increases
     
     if (targetBloodCount > bloodCount) {
-      // Add blood stains gradually
+      // Add blood stains gradually with a delay
       const timer = setTimeout(() => {
         setBloodCount(prev => prev + 1);
-      }, 1000);
+      }, 1000 + Math.random() * 3000); // Random delay for more natural appearance
       
       return () => clearTimeout(timer);
     }
   }, [gameState.ambition, bloodCount]);
   
-  // Cycle through witch whispers for testing
+  // Trigger hallucinations based on ambition
   useEffect(() => {
-    const whisperInterval = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * witchWhispers.length);
-      setWhisperText(witchWhispers[randomIndex]);
-    }, 5000);
-    
-    return () => clearInterval(whisperInterval);
-  }, [witchWhispers]);
+    // Higher ambition means more frequent hallucinations
+    if (gameState.ambition > 60) {
+      const hallucInterval = setInterval(() => {
+        const shouldShow = Math.random() < (gameState.ambition / 200); // Probability increases with ambition
+        if (shouldShow) {
+          setShowHallucination(true);
+          setTimeout(() => setShowHallucination(false), 3000 + Math.random() * 2000);
+        }
+      }, 10000); // Check every 10 seconds
+      
+      return () => clearInterval(hallucInterval);
+    }
+  }, [gameState.ambition]);
+  
+  // Show witch whispers based on ambition
+  useEffect(() => {
+    if (gameState.ambition > 65) {
+      const whisperInterval = setInterval(() => {
+        const shouldShow = Math.random() < (gameState.ambition / 150);
+        if (shouldShow) {
+          // Select a random whisper
+          const randomIndex = Math.floor(Math.random() * witchWhispers.length);
+          setWhisperText(witchWhispers[randomIndex]);
+          
+          // Hide after a delay
+          setTimeout(() => {
+            setWhisperText("");
+          }, 4000);
+        }
+      }, 15000);
+      
+      return () => clearInterval(whisperInterval);
+    }
+  }, [gameState.ambition, witchWhispers]);
+  
+  // Show Banquo's ghost at the banquet if ambition is high
+  useEffect(() => {
+    // Only show ghost in the banquet scene (scene5A) when ambition is high
+    if (currentScene.id === 'scene5A' && gameState.ambition > 75) {
+      setShowGhost(true);
+    } else {
+      setShowGhost(false);
+    }
+  }, [currentScene, gameState.ambition]);
 
   // Scene-specific audio and visual effects
   useEffect(() => {
@@ -101,7 +138,7 @@ export const GameEffects: React.FC<GameEffectsProps> = ({
     const size = 100 + Math.random() * 150; // Random size
     const top = Math.random() * 100; // Random vertical position
     const left = Math.random() * 100; // Random horizontal position
-    const opacity = 0.2 + Math.random() * 0.4; // Higher opacity
+    const opacity = 0.2 + (Math.random() * 0.3) + (gameState.ambition / 400); // Higher opacity with higher ambition
     const rotation = Math.random() * 360; // Random rotation
     
     const bloodStyle = {
@@ -160,7 +197,7 @@ export const GameEffects: React.FC<GameEffectsProps> = ({
         </div>
       )}
       
-      {/* Banquo's ghost */}
+      {/* Banquo's ghost - only shown in banquet scene with high ambition */}
       {showGhost && (
         <div className="fixed inset-0 pointer-events-none z-10 flex items-center justify-center">
           <div className="relative">

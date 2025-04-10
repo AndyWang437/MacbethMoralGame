@@ -12,8 +12,8 @@ export default function Game() {
   const navigate = useNavigate();
   const [gameState, setGameState] = useState<GameState>({
     currentScene: 'scene1A',
-    ambition: 70,
-    guilt: 50,
+    ambition: 20,
+    guilt: 20,
     pathHistory: [],
     collectibles: [],
     relationships: {
