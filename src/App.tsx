@@ -6,7 +6,7 @@ import './index.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename={import.meta.env.PROD ? '/MacbethMoralGame' : '/'}>
       <div className="min-h-screen bg-macbeth-dark text-macbeth-light">
         <Routes>
           <Route path="/" element={<Home />} />
