@@ -52,7 +52,7 @@ export const GameEffects: React.FC<GameEffectsProps> = ({
 
     // Start transition animation
     if (isTransitioning) {
-      setTimeout(onTransitionComplete, 1000);
+      setTimeout(onTransitionComplete, 700);
     }
   }, [currentScene, isTransitioning, onTransitionComplete]);
 
@@ -67,6 +67,7 @@ export const GameEffects: React.FC<GameEffectsProps> = ({
 // Helper functions for scene-specific effects
 function getSceneLocation(sceneId: string): string {
   const locationMap: { [key: string]: string } = {
+    'scene1A': 'battlefield',
     'scene1': 'battlefield',
     'scene2': 'castle',
     'scene3': 'throne_room',
@@ -91,6 +92,7 @@ function getBackgroundClass(location: string): string {
 
 function getSceneAudio(sceneId: string): string | null {
   const audioMap: { [key: string]: string } = {
+    'scene1A': '/sounds/battlefield.mp3',
     'scene1': '/sounds/battlefield.mp3',
     'scene2': '/sounds/castle.mp3',
     'scene3': '/sounds/throne-room.mp3',

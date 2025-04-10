@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { scenes } from '../data/scenes';
 import { Scene, GameState } from '../types/game';
@@ -11,7 +11,7 @@ import { getCharacterPortrait } from '../utils/characters';
 export default function Game() {
   const navigate = useNavigate();
   const [gameState, setGameState] = useState<GameState>({
-    currentScene: 'scene1',
+    currentScene: 'scene1A',
     ambition: 50,
     guilt: 0,
     pathHistory: [],
@@ -35,21 +35,43 @@ export default function Game() {
   const [showCharacterPsychology, setShowCharacterPsychology] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+  
+  // Store next scene data during transition
+  const pendingChoiceRef = useRef<{ nextScene: string; ambitionChange: number; guiltChange: number } | null>(null);
 
   const currentScene = scenes.find(scene => scene.id === gameState.currentScene);
 
   const handleChoice = (choice: { nextScene: string; ambitionChange: number; guiltChange: number }) => {
     setIsTransitioning(true);
-    setGameState(prev => ({
-      ...prev,
-      currentScene: choice.nextScene,
-      ambition: Math.max(0, Math.min(100, prev.ambition + choice.ambitionChange)),
-      guilt: Math.max(0, Math.min(100, prev.guilt + choice.guiltChange)),
-      pathHistory: [...prev.pathHistory, prev.currentScene]
-    }));
+    pendingChoiceRef.current = choice;
+    
+    // Fade out first, then update the state after the transition completes
   };
 
   const handleTransitionComplete = () => {
+    // Only update state after fade-out is complete
+    if (pendingChoiceRef.current) {
+      const choice = pendingChoiceRef.current;
+      
+      if (choice.nextScene === 'end') {
+        const endingType = gameState.ambition >= 75 ? 'tyrant' : 
+                          gameState.ambition >= 50 ? 'tragic' : 
+                          gameState.ambition >= 25 ? 'balanced' : 'redemption';
+        navigate('/ending', { state: { endingType, gameState } });
+        return;
+      }
+      
+      setGameState(prev => ({
+        ...prev,
+        currentScene: choice.nextScene,
+        ambition: Math.max(0, Math.min(100, prev.ambition + choice.ambitionChange)),
+        guilt: Math.max(0, Math.min(100, prev.guilt + choice.guiltChange)),
+        pathHistory: [...prev.pathHistory, prev.currentScene]
+      }));
+      
+      pendingChoiceRef.current = null;
+    }
+    
     setIsTransitioning(false);
   };
 
@@ -73,13 +95,8 @@ export default function Game() {
       
       <EnhancedUI
         gameState={gameState}
-        onShowCollectibles={() => setShowCollectibles(true)}
-        onShowPathHistory={() => setShowPathHistory(true)}
         onShowRelationships={() => setShowRelationships(true)}
-        onShowCriticalAnalysis={() => setShowCriticalAnalysis(true)}
-        onShowModernTranslation={() => setShowModernTranslation(true)}
-        onShowWhatIf={() => setShowWhatIf(true)}
-        onShowCharacterPsychology={() => setShowCharacterPsychology(true)}
+        onShowPathHistory={() => setShowPathHistory(true)}
         onShowSettings={() => setShowSettings(true)}
         onShowHelp={() => setShowHelp(true)}
       />
@@ -96,18 +113,11 @@ export default function Game() {
 
           {currentScene.quote && (
             <div className="quote-box">
-              <div className="flex items-start gap-4">
-                <img
-                  src={getCharacterPortrait(currentScene.quoteSource || 'default')}
-                  alt={currentScene.quoteSource || 'Character'}
-                  className="w-16 h-16 rounded-full border-2 border-macbeth-gold"
-                />
-                <div>
-                  <p className="text-macbeth-gold flame-effect">{currentScene.quote}</p>
-                  {currentScene.quoteSource && (
-                    <p className="text-sm mt-2 text-macbeth-light/70">{currentScene.quoteSource}</p>
-                  )}
-                </div>
+              <div>
+                <p className="text-macbeth-gold flame-effect">{currentScene.quote}</p>
+                {currentScene.quoteSource && (
+                  <p className="text-sm mt-2 text-macbeth-light/70">{currentScene.quoteSource}</p>
+                )}
               </div>
             </div>
           )}

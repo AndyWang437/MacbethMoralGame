@@ -4,19 +4,14 @@ import { GameState, Collectible, CharacterRelationships } from '../types/game';
 interface EnhancedUIProps {
   gameState: GameState;
   onShowRelationships: () => void;
-  onShowCriticalAnalysis: () => void;
-  onShowModernTranslation: () => void;
-  onShowWhatIf: () => void;
-  onShowCharacterPsychology: () => void;
+  onShowPathHistory?: () => void;
+  onShowSettings?: () => void;
+  onShowHelp?: () => void;
 }
 
 export const EnhancedUI: React.FC<EnhancedUIProps> = ({
   gameState,
   onShowRelationships,
-  onShowCriticalAnalysis,
-  onShowModernTranslation,
-  onShowWhatIf,
-  onShowCharacterPsychology,
 }) => {
   return (
     <div className="fixed top-0 left-0 right-0 bg-macbeth-dark border-b border-macbeth-gold p-4 shadow-xl z-50">
@@ -33,64 +28,11 @@ export const EnhancedUI: React.FC<EnhancedUIProps> = ({
                 />
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-macbeth-gold font-serif">Guilt:</span>
-              <div className="w-32 h-4 bg-gray-800 rounded-full overflow-hidden border border-macbeth-gold hover:border-macbeth-red">
-                <div
-                  className="h-full bg-gradient-to-r from-macbeth-blue to-blue-600 transition-all duration-300"
-                  style={{ width: `${gameState.guilt}%` }}
-                />
-              </div>
-            </div>
           </div>
 
-          {/* Buttons Section */}
+          {/* Buttons Section - Now empty */}
           <div className="flex flex-wrap justify-center gap-2">
-            <button
-              onClick={onShowRelationships}
-              className="bg-gray-800 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors border border-macbeth-gold hover:border-macbeth-red text-sm"
-            >
-              <span className="flex items-center gap-1">
-                <span className="text-macbeth-gold">👥</span>
-                Relationships
-              </span>
-            </button>
-            <button
-              onClick={onShowCriticalAnalysis}
-              className="bg-gray-800 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors border border-macbeth-gold hover:border-macbeth-red text-sm"
-            >
-              <span className="flex items-center gap-1">
-                <span className="text-macbeth-gold">📖</span>
-                Critical Analysis
-              </span>
-            </button>
-            <button
-              onClick={onShowModernTranslation}
-              className="bg-gray-800 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors border border-macbeth-gold hover:border-macbeth-red text-sm"
-            >
-              <span className="flex items-center gap-1">
-                <span className="text-macbeth-gold">🔄</span>
-                Modern Translation
-              </span>
-            </button>
-            <button
-              onClick={onShowWhatIf}
-              className="bg-gray-800 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors border border-macbeth-gold hover:border-macbeth-red text-sm"
-            >
-              <span className="flex items-center gap-1">
-                <span className="text-macbeth-gold">❓</span>
-                What If?
-              </span>
-            </button>
-            <button
-              onClick={onShowCharacterPsychology}
-              className="bg-gray-800 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors border border-macbeth-gold hover:border-macbeth-red text-sm"
-            >
-              <span className="flex items-center gap-1">
-                <span className="text-macbeth-gold">🧠</span>
-                Character Psychology
-              </span>
-            </button>
+            {/* All buttons removed */}
           </div>
         </div>
       </div>

@@ -1,17 +1,5 @@
 import { GameState } from '../types/game';
 
-export const getEnding = (state: GameState): string => {
-  if (state.ambition >= 80 && state.guilt <= 20) {
-    return 'tyrant';
-  } else if (state.ambition >= 60 && state.guilt >= 40) {
-    return 'tragic';
-  } else if (state.ambition <= 40 && state.guilt >= 60) {
-    return 'redemption';
-  } else {
-    return 'balanced';
-  }
-};
-
 export const getEndingDescription = (ending: string): string => {
   switch (ending) {
     case 'tyrant':

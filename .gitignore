@@ -26,3 +26,4 @@ dist-ssr
 # Cache directories
 .cache
 node_modules/.cache 
+.vercel

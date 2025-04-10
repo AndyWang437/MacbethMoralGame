@@ -4,46 +4,31 @@ export const scenes: Scene[] = [
   {
     id: "scene1",
     title: "The Witches' Prophecy",
-    text: "On a dark and stormy heath, you and Banquo encounter three mysterious witches. They speak in riddles, foretelling your future. One hails you as Thane of Glamis, another as Thane of Cawdor, and the third proclaims you shall be king. Banquo is told his descendants will be kings.",
-    quote: "All hail, Macbeth! Hail to thee, Thane of Glamis! Hail to thee, Thane of Cawdor! Hail to thee, that shalt be king hereafter!",
+    text: "You encounter three witches who prophesy that you will become Thane of Cawdor and then King. Their words fill you with both excitement and unease.",
+    quote: "All hail, Macbeth! Hail to thee, Thane of Cawdor! All hail, Macbeth, that shalt be king hereafter!",
     quoteSource: "First Witch, Act 1, Scene 3",
     choices: [
       {
         label: "A",
-        text: "Dismiss the witches as mere tricksters and continue your journey.",
+        text: "Trust the prophecy and let it guide you",
         nextScene: "scene2A",
-        ambitionChange: -10,
-        guiltChange: 0
+        ambitionChange: +15
       },
       {
         label: "B",
-        text: "Ponder the prophecy and its implications for your future.",
+        text: "Dismiss the prophecy as mere fantasy",
         nextScene: "scene2B",
-        ambitionChange: 10,
-        guiltChange: 0
+        ambitionChange: -10
       },
       {
         label: "C",
-        text: "Demand more information from the witches about how this will come to pass.",
+        text: "Share the prophecy with Lady Macbeth",
         nextScene: "scene2C",
-        ambitionChange: 15,
-        guiltChange: 0
-      },
-      {
-        label: "D",
-        text: "Share your concerns with Banquo about the witches' intentions.",
-        nextScene: "scene2A",
-        ambitionChange: -5,
-        guiltChange: 0
+        ambitionChange: +5
       }
     ],
     criticalLens: {
       interpretations: [
-        {
-          title: "Fate vs. Free Will",
-          description: "The witches' prophecy raises questions about whether Macbeth's actions are predetermined or if he has the power to choose his own path.",
-          critic: "Dr. Sarah Johnson"
-        },
         {
           title: "The Supernatural in Macbeth",
           description: "The witches represent the supernatural forces that influence human behavior, blurring the line between reality and illusion.",
@@ -89,8 +74,8 @@ export const scenes: Scene[] = [
       ]
     },
     modernTranslation: {
-      original: "All hail, Macbeth! Hail to thee, Thane of Glamis! Hail to thee, Thane of Cawdor! Hail to thee, that shalt be king hereafter!",
-      modern: "Greetings, Macbeth! You are the Thane of Glamis! You will become the Thane of Cawdor! And you will be king in the future!",
+      original: "All hail, Macbeth! Hail to thee, Thane of Cawdor! All hail, Macbeth, that shalt be king hereafter!",
+      modern: "Greetings, Macbeth! You are the Thane of Cawdor! You will become king in the future!",
       explanation: "The witches are using formal, prophetic language to announce Macbeth's future titles. The repetition of 'Hail' emphasizes the importance of each title."
     },
     whatIfScenarios: [
@@ -98,7 +83,7 @@ export const scenes: Scene[] = [
         id: "whatif1",
         title: "What if Macbeth ignored the prophecy?",
         description: "Exploring an alternate path where Macbeth dismisses the witches' words.",
-        originalChoice: "Ponder the prophecy and its implications for your future.",
+        originalChoice: "Trust the prophecy and let it guide you",
         alternativeChoice: "Completely ignore the witches and focus on your current duties.",
         consequences: [
           "Macbeth remains loyal to Duncan",
@@ -111,7 +96,7 @@ export const scenes: Scene[] = [
         id: "whatif2",
         title: "What if Macbeth sought guidance from Duncan?",
         description: "Exploring how the story might change if Macbeth confided in King Duncan about the prophecy.",
-        originalChoice: "Demand more information from the witches about how this will come to pass.",
+        originalChoice: "Share the prophecy with Lady Macbeth",
         alternativeChoice: "Seek Duncan's counsel about the strange encounter.",
         consequences: [
           "Duncan might have taken precautions",
@@ -124,6 +109,48 @@ export const scenes: Scene[] = [
   },
   {
     id: "scene2A",
+    title: "The First Step",
+    text: "You've chosen to trust the prophecy. As you return to your castle, you receive news that the Thane of Cawdor has been executed for treason, and Duncan has named you as his successor. The first part of the prophecy has come true.",
+    quote: "The Thane of Cawdor lives: why do you dress me in borrowed robes?",
+    quoteSource: "Act 1, Scene 3",
+    choices: [
+      {
+        label: "A",
+        text: "Accept the title with humility",
+        nextScene: "scene3E",
+        ambitionChange: +5
+      },
+      {
+        label: "B",
+        text: "Let the prophecy strengthen your determination",
+        nextScene: "scene3E",
+        ambitionChange: +15
+      }
+    ]
+  },
+  {
+    id: "scene2B",
+    title: "The Path of Duty",
+    text: "You've chosen to dismiss the prophecy. As you return to your duties, you receive news that the Thane of Cawdor has been executed for treason, and Duncan has named you as his successor. Despite your skepticism, the first part of the prophecy has come true.",
+    quote: "The service and the loyalty I owe, in doing it, pays itself.",
+    quoteSource: "Act 1, Scene 4",
+    choices: [
+      {
+        label: "A",
+        text: "Remain loyal to Duncan",
+        nextScene: "scene3E",
+        ambitionChange: -10
+      },
+      {
+        label: "B",
+        text: "Begin to question your skepticism",
+        nextScene: "scene3E",
+        ambitionChange: +5
+      }
+    ]
+  },
+  {
+    id: "scene2C",
     title: "Loyalty to Duncan",
     text: "You choose to remain loyal to King Duncan, dismissing the witches' prophecy as mere trickery. As you return to your duties, you receive news that the Thane of Cawdor has been executed for treason, and Duncan has named you as his successor.",
     quote: "The service and the loyalty I owe, in doing it, pays itself.",
@@ -133,29 +160,25 @@ export const scenes: Scene[] = [
         label: "A",
         text: "Accept the honor with humility and continue serving Duncan faithfully.",
         nextScene: "scene3A",
-        ambitionChange: -5,
-        guiltChange: 0
+        ambitionChange: -5
       },
       {
         label: "B",
         text: "Begin to question if the witches' prophecy might be coming true.",
         nextScene: "scene3B",
-        ambitionChange: 5,
-        guiltChange: 0
+        ambitionChange: 5
       },
       {
         label: "C",
         text: "Share your concerns about the prophecy with Duncan.",
         nextScene: "scene3C",
-        ambitionChange: -10,
-        guiltChange: 0
+        ambitionChange: -10
       },
       {
         label: "D",
         text: "Use this opportunity to strengthen your position at court.",
         nextScene: "scene3D",
-        ambitionChange: 10,
-        guiltChange: 0
+        ambitionChange: 10
       }
     ],
     criticalLens: {
@@ -246,7 +269,7 @@ export const scenes: Scene[] = [
   {
     id: "scene2B",
     title: "Lady Macbeth's Influence",
-    text: "You write to Lady Macbeth about the prophecy. She sees this as an opportunity and begins to plan Duncan's murder. When you return home, she questions your manhood and resolve, saying you are 'too full o' the milk of human kindness.' She urges you to 'look like the innocent flower, but be the serpent under it.'",
+    text: "You write to Lady Macbeth about the prophecy. She sees this as an opportunity and begins to plan Duncan's murder. When you return home, she questions your manhood and determination, saying you are 'too full o' the milk of human kindness.' She urges you to 'look like the innocent flower, but be the serpent under it.'",
     quote: "Art thou afeard to be the same in thine own act and valour as thou art in desire?",
     quoteSource: "Act 1, Scene 7",
     choices: [
@@ -273,7 +296,7 @@ export const scenes: Scene[] = [
       },
       {
         label: "D",
-        text: "Use her ambition to strengthen your own resolve",
+        text: "Use her ambition to strengthen your own determination",
         nextScene: "scene3F",
         ambitionChange: +20,
         guiltChange: 0
@@ -353,7 +376,7 @@ export const scenes: Scene[] = [
         id: "whatif5",
         title: "What if Lady Macbeth had different motives?",
         description: "Exploring how the story might change if Lady Macbeth had different reasons for wanting power.",
-        originalChoice: "Use her ambition to strengthen your own resolve",
+        originalChoice: "Use her ambition to strengthen your own determination",
         alternativeChoice: "Question her true motives",
         consequences: [
           "Their relationship might have been more equal",
@@ -366,122 +389,22 @@ export const scenes: Scene[] = [
   },
   {
     id: "scene3A",
-    title: "Duncan's Arrival",
-    text: "King Duncan arrives at your castle, praising its pleasant atmosphere. He speaks of the 'sweet air' and 'gentle senses,' unaware of the murderous plot brewing within. Lady Macbeth greets him with false hospitality, saying 'We rest your hermits.' The dramatic irony is palpable as you know what is to come.",
+    title: "The King's Arrival",
+    text: "Duncan arrives at your castle, praising its pleasant atmosphere. He speaks of the 'sweet air' and 'gentle senses,' unaware of the murderous plot brewing within. Lady Macbeth greets him with false hospitality.",
     quote: "This castle hath a pleasant seat; the air nimbly and sweetly recommends itself unto our gentle senses.",
     quoteSource: "Act 1, Scene 6",
     choices: [
       {
         label: "A",
-        text: "Warn Duncan of the danger",
-        nextScene: "scene4C",
-        ambitionChange: -15,
-        guiltChange: 0
+        text: "Proceed with the murder plan",
+        nextScene: "scene3D",
+        ambitionChange: +20
       },
       {
         label: "B",
-        text: "Proceed with the murder plan",
-        nextScene: "scene3D",
-        ambitionChange: +20,
-        guiltChange: 0
-      },
-      {
-        label: "C",
-        text: "Seek a private audience with Duncan",
-        nextScene: "scene3G",
-        ambitionChange: -10,
-        guiltChange: 0
-      },
-      {
-        label: "D",
-        text: "Use the opportunity to gather information",
-        nextScene: "scene3H",
-        ambitionChange: +10,
-        guiltChange: 0
-      }
-    ],
-    criticalLens: {
-      interpretations: [
-        {
-          title: "Dramatic Irony",
-          description: "The scene's dramatic irony heightens the tension as the audience knows what Duncan does not.",
-          critic: "Dr. Sarah Johnson"
-        },
-        {
-          title: "The Nature of Hospitality",
-          description: "The scene explores the violation of the sacred bond between host and guest.",
-          critic: "Dr. James Wilson"
-        },
-        {
-          title: "The Role of Setting",
-          description: "The castle's pleasant appearance contrasts with the dark deeds planned within.",
-          critic: "Prof. David Thompson"
-        }
-      ],
-      criticQuotes: [
-        {
-          text: "The scene's dramatic irony creates a sense of impending doom that permeates the entire play.",
-          critic: "A.C. Bradley",
-          source: "Shakespearean Tragedy"
-        },
-        {
-          text: "Duncan's praise of the castle's pleasant atmosphere underscores the betrayal that is to come.",
-          critic: "Harold Bloom",
-          source: "Shakespeare: The Invention of the Human"
-        }
-      ],
-      adaptations: [
-        {
-          title: "Macbeth (1971)",
-          description: "Roman Polanski's adaptation emphasizes the contrast between the castle's appearance and its dark secrets.",
-          differences: [
-            "Uses visual symbolism to foreshadow events",
-            "Emphasizes the castle's deceptive beauty",
-            "Focuses on the contrast between appearance and reality"
-          ]
-        },
-        {
-          title: "Macbeth (2010)",
-          description: "Patrick Stewart's portrayal in a modern military setting, emphasizing the political aspects.",
-          differences: [
-            "Set in a Soviet-style state",
-            "Uses modern political context",
-            "Emphasizes the bureaucratic aspects of power"
-          ]
-        }
-      ]
-    },
-    modernTranslation: {
-      original: "This castle hath a pleasant seat; the air nimbly and sweetly recommends itself unto our gentle senses.",
-      modern: "This castle is in a lovely location; the air is fresh and pleasant to our senses.",
-      explanation: "Duncan is praising the castle's pleasant atmosphere, unaware of the danger that awaits him."
-    },
-    whatIfScenarios: [
-      {
-        id: "whatif6",
-        title: "What if Duncan had sensed the danger?",
-        description: "Exploring how the story might change if Duncan had been more perceptive.",
-        originalChoice: "Proceed with the murder plan",
-        alternativeChoice: "Duncan notices something amiss",
-        consequences: [
-          "Duncan might have taken precautions",
-          "The murder plot might have been discovered",
-          "Macbeth might have been arrested",
-          "The natural succession would have continued"
-        ]
-      },
-      {
-        id: "whatif7",
-        title: "What if the castle's atmosphere had been different?",
-        description: "Exploring how the story might change if the castle had a more ominous atmosphere.",
-        originalChoice: "Use the opportunity to gather information",
-        alternativeChoice: "The castle appears foreboding",
-        consequences: [
-          "Duncan might have been more cautious",
-          "The murder plot might have been more difficult",
-          "Different power dynamics might have emerged",
-          "The supernatural elements might have been more prominent"
-        ]
+        text: "Seek a way to warn Duncan",
+        nextScene: "scene3E",
+        ambitionChange: -15
       }
     ]
   },
@@ -496,29 +419,25 @@ export const scenes: Scene[] = [
         label: "A",
         text: "Let the Porter handle it and maintain composure",
         nextScene: "scene4A",
-        ambitionChange: 10,
-        guiltChange: 5
+        ambitionChange: 10
       },
       {
         label: "B",
         text: "Take control of the situation yourself",
         nextScene: "scene4B",
-        ambitionChange: 15,
-        guiltChange: 10
+        ambitionChange: 15
       },
       {
         label: "C",
         text: "Use the chaos to your advantage",
         nextScene: "scene4C",
-        ambitionChange: 20,
-        guiltChange: 0
+        ambitionChange: 20
       },
       {
         label: "D",
         text: "Show signs of distress to appear innocent",
         nextScene: "scene4D",
-        ambitionChange: -5,
-        guiltChange: 15
+        ambitionChange: -5
       }
     ],
     criticalLens: {
@@ -607,123 +526,44 @@ export const scenes: Scene[] = [
     ]
   },
   {
+    id: "scene3C",
+    title: "The Path of Honor",
+    text: "You've chosen to resist Lady Macbeth's influence. As you stand firm in your decision, she questions your manhood and determination, trying to sway you back to the murderous path.",
+    quote: "When you durst do it, then you were a man; And to be more than what you were, you would be so much more the man.",
+    quoteSource: "Act 1, Scene 7",
+    choices: [
+      {
+        label: "A",
+        text: "Maintain your honorable stance",
+        nextScene: "scene3E",
+        ambitionChange: -20
+      },
+      {
+        label: "B",
+        text: "Let her words affect you",
+        nextScene: "scene3D",
+        ambitionChange: +15
+      }
+    ]
+  },
+  {
     id: "scene3D",
-    title: "Duncan's Murder",
-    text: "You and Lady Macbeth have planned Duncan's murder. As you approach his chamber, you see a dagger floating before you, its handle pointing toward your hand. You hear a voice cry 'Sleep no more!' After the deed is done, you are consumed by guilt and paranoia.",
+    title: "The Murder",
+    text: "You've decided to proceed with Duncan's murder. As you approach his chamber, you see a dagger floating before you, its handle pointing toward your hand. You hear a voice cry 'Sleep no more!'",
     quote: "Is this a dagger which I see before me, The handle toward my hand?",
     quoteSource: "Act 2, Scene 1",
     choices: [
       {
         label: "A",
-        text: "Confess your crime and face the consequences",
-        nextScene: "scene3E",
-        ambitionChange: -20,
-        guiltChange: -10
+        text: "Follow the dagger's guidance",
+        nextScene: "scene3F",
+        ambitionChange: +25
       },
       {
         label: "B",
-        text: "Kill the guards to cover your tracks",
-        nextScene: "scene3F",
-        ambitionChange: +30,
-        guiltChange: +20
-      },
-      {
-        label: "C",
-        text: "Frame someone else for the murder",
-        nextScene: "scene3G",
-        ambitionChange: +25,
-        guiltChange: +15
-      },
-      {
-        label: "D",
-        text: "Seek guidance from Lady Macbeth",
-        nextScene: "scene3H",
-        ambitionChange: +15,
-        guiltChange: +10
-      }
-    ],
-    criticalLens: {
-      interpretations: [
-        {
-          title: "The Psychology of Murder",
-          description: "The dagger hallucination reveals Macbeth's psychological state before committing the murder.",
-          critic: "Dr. Sarah Johnson"
-        },
-        {
-          title: "The Supernatural and the Mind",
-          description: "The floating dagger represents the intersection of supernatural forces and psychological turmoil.",
-          critic: "Dr. James Wilson"
-        },
-        {
-          title: "Moral Descent",
-          description: "This scene marks the point of no return in Macbeth's moral deterioration.",
-          critic: "Prof. David Thompson"
-        }
-      ],
-      criticQuotes: [
-        {
-          text: "The dagger scene represents the moment when Macbeth's conscience and ambition collide, with ambition ultimately prevailing.",
-          critic: "A.C. Bradley",
-          source: "Shakespearean Tragedy"
-        },
-        {
-          text: "The floating dagger is both a supernatural manifestation and a psychological projection of Macbeth's guilt.",
-          critic: "Harold Bloom",
-          source: "Shakespeare: The Invention of the Human"
-        }
-      ],
-      adaptations: [
-        {
-          title: "Macbeth (1971)",
-          description: "Roman Polanski's adaptation emphasizes the psychological horror of the murder scene.",
-          differences: [
-            "Uses visual effects to enhance the dagger's appearance",
-            "Emphasizes the psychological impact of the murder",
-            "Focuses on the moral consequences of the act"
-          ]
-        },
-        {
-          title: "Macbeth (2015)",
-          description: "Justin Kurzel's adaptation presents the murder with a more psychological focus.",
-          differences: [
-            "Uses realistic psychological horror",
-            "Emphasizes PTSD and trauma",
-            "Blends supernatural and psychological elements"
-          ]
-        }
-      ]
-    },
-    modernTranslation: {
-      original: "Is this a dagger which I see before me, The handle toward my hand?",
-      modern: "Is that a dagger I see in front of me, with its handle pointing toward my hand?",
-      explanation: "Macbeth's famous soliloquy reveals his psychological state as he prepares to commit murder."
-    },
-    whatIfScenarios: [
-      {
-        id: "whatif10",
-        title: "What if Macbeth had resisted the dagger's call?",
-        description: "Exploring how the story might change if Macbeth had resisted the supernatural temptation.",
-        originalChoice: "Kill the guards to cover your tracks",
-        alternativeChoice: "Resist the dagger's call and abandon the plan",
-        consequences: [
-          "Duncan might have lived longer",
-          "The natural succession would have continued",
-          "Macbeth might have remained a loyal thane",
-          "Different power dynamics might have emerged"
-        ]
-      },
-      {
-        id: "whatif11",
-        title: "What if the dagger had been real?",
-        description: "Exploring how the story might change if the dagger had been a physical object rather than a hallucination.",
-        originalChoice: "Frame someone else for the murder",
-        alternativeChoice: "The dagger is a real weapon placed by someone else",
-        consequences: [
-          "Someone else might be manipulating Macbeth",
-          "The supernatural elements might be more ambiguous",
-          "Different power dynamics might have emerged",
-          "The investigation might have taken a different turn"
-        ]
+        text: "Recognize this as a sign to stop",
+        nextScene: "scene3E",
+        ambitionChange: -20
       }
     ]
   },
@@ -771,10 +611,11 @@ export const scenes: Scene[] = [
           critic: "Dr. Emily Wilson"
         }
       ],
-      quotes: [
+      criticQuotes: [
         {
           text: "The confession scene marks a crucial turning point in Macbeth's moral journey.",
-          critic: "Prof. James Thompson"
+          critic: "Prof. James Thompson",
+          source: "Macbeth: A Critical Analysis"
         }
       ],
       adaptations: [
@@ -812,285 +653,106 @@ export const scenes: Scene[] = [
   },
   {
     id: "scene4A",
-    title: "The Murder of Banquo",
-    text: "You've grown increasingly paranoid about Banquo and his son Fleance. The witches' prophecy about Banquo's descendants becoming kings haunts you. You meet with two murderers, manipulating them by questioning their manhood and blaming Banquo for their misfortunes.",
-    quote: "For Banquo's issue have I filed my mind; For them the gracious Duncan have I murdered.",
-    quoteSource: "Act 3, Scene 1",
+    title: "The Aftermath",
+    text: "You've chosen to recognize the dagger as a sign to stop. As you turn away from Duncan's chamber, you must decide how to handle the situation.",
+    quote: "I go, and it is done; the bell invites me. Hear it not, Duncan; for it is a knell That summons thee to heaven or to hell.",
+    quoteSource: "Act 2, Scene 1",
     choices: [
       {
         label: "A",
-        text: "Call off the murder and face your guilt",
-        nextScene: "scene5C",
-        ambitionChange: -20,
-        guiltChange: -10
+        text: "Confess your intentions to Duncan",
+        nextScene: "scene4E",
+        ambitionChange: -25
       },
       {
         label: "B",
-        text: "Proceed with Banquo's murder",
-        nextScene: "scene4B",
-        ambitionChange: +30,
-        guiltChange: +20
-      },
-      {
-        label: "C",
-        text: "Hire additional assassins to ensure success",
-        nextScene: "scene4C",
-        ambitionChange: +35,
-        guiltChange: +25
-      },
-      {
-        label: "D",
-        text: "Seek guidance from Lady Macbeth",
-        nextScene: "scene4D",
-        ambitionChange: +15,
-        guiltChange: +10
-      }
-    ],
-    criticalLens: {
-      interpretations: [
-        {
-          title: "The Psychology of Paranoia",
-          description: "Macbeth's growing paranoia about Banquo reveals his deteriorating mental state and moral compass.",
-          critic: "Dr. Sarah Johnson"
-        },
-        {
-          title: "The Cycle of Violence",
-          description: "The decision to murder Banquo represents the continuation of a cycle of violence that began with Duncan's murder.",
-          critic: "Dr. James Wilson"
-        },
-        {
-          title: "The Nature of Power",
-          description: "This scene demonstrates how power can corrupt and lead to increasingly desperate measures to maintain it.",
-          critic: "Prof. David Thompson"
-        }
-      ],
-      criticQuotes: [
-        {
-          text: "Macbeth's decision to murder Banquo marks his complete moral deterioration and descent into tyranny.",
-          critic: "A.C. Bradley",
-          source: "Shakespearean Tragedy"
-        },
-        {
-          text: "The scene reveals how Macbeth's initial ambition has transformed into paranoia and desperation.",
-          critic: "Harold Bloom",
-          source: "Shakespeare: The Invention of the Human"
-        }
-      ],
-      adaptations: [
-        {
-          title: "Macbeth (1971)",
-          description: "Roman Polanski's adaptation emphasizes the psychological horror of the murder scene.",
-          differences: [
-            "Uses visual effects to enhance the scene's tension",
-            "Emphasizes the psychological impact of the murder",
-            "Focuses on the moral consequences of the act"
-          ]
-        },
-        {
-          title: "Macbeth (2015)",
-          description: "Justin Kurzel's adaptation presents the murder with a more psychological focus.",
-          differences: [
-            "Uses realistic psychological horror",
-            "Emphasizes PTSD and trauma",
-            "Blends supernatural and psychological elements"
-          ]
-        }
-      ]
-    },
-    modernTranslation: {
-      original: "For Banquo's issue have I filed my mind; For them the gracious Duncan have I murdered.",
-      modern: "I've filled my mind with thoughts of Banquo's descendants; I murdered Duncan for their sake.",
-      explanation: "Macbeth reveals his growing paranoia about Banquo's descendants and how it drives his actions."
-    },
-    whatIfScenarios: [
-      {
-        id: "whatif12",
-        title: "What if Macbeth had trusted Banquo?",
-        description: "Exploring how the story might change if Macbeth had maintained his trust in Banquo.",
-        originalChoice: "Proceed with Banquo's murder",
-        alternativeChoice: "Trust Banquo and maintain their friendship",
-        consequences: [
-          "The cycle of violence might have been broken",
-          "Macbeth might have had a loyal advisor",
-          "Different power dynamics might have emerged",
-          "The prophecy might have been interpreted differently"
-        ]
-      },
-      {
-        id: "whatif13",
-        title: "What if the murderers had refused?",
-        description: "Exploring how the story might change if the murderers had rejected Macbeth's offer.",
-        originalChoice: "Hire additional assassins to ensure success",
-        alternativeChoice: "The murderers refuse to kill Banquo",
-        consequences: [
-          "Macbeth might have had to find other means",
-          "The plot might have been discovered",
-          "Different power dynamics might have emerged",
-          "The investigation might have taken a different turn"
-        ]
+        text: "Keep your thoughts to yourself",
+        nextScene: "scene3E",
+        ambitionChange: -10
       }
     ]
   },
   {
     id: "scene4B",
-    title: "The Royal Banquet",
-    text: "As king, you host a grand banquet. The hall is filled with nobles and guests, but one seat remains empty - the place where Banquo should be sitting. The atmosphere is tense as you notice the empty chair.",
-    quote: "The table's full.",
-    quoteSource: "Act 3, Scene 4",
+    title: "The Investigation",
+    text: "The murder of Duncan has been discovered. The court is in chaos, and suspicion falls on the guards. You must decide how to handle the investigation.",
+    quote: "O, yet I do repent me of my fury, That I did kill them.",
+    quoteSource: "Act 2, Scene 3",
     choices: [
       {
         label: "A",
-        text: "Address the empty chair and acknowledge Banquo's absence",
-        nextScene: "scene5A",
-        ambitionChange: -10,
-        guiltChange: 15
+        text: "Maintain the guards' guilt",
+        nextScene: "scene4E",
+        ambitionChange: +20
       },
       {
         label: "B",
-        text: "Ignore the empty chair and continue the feast",
-        nextScene: "scene5B",
-        ambitionChange: 10,
-        guiltChange: 0
-      },
-      {
-        label: "C",
-        text: "Make a toast in Banquo's honor",
-        nextScene: "scene5C",
-        ambitionChange: -5,
-        guiltChange: 10
-      },
-      {
-        label: "D",
-        text: "Use the opportunity to assert your authority",
-        nextScene: "scene5D",
-        ambitionChange: 15,
-        guiltChange: -5
-      }
-    ],
-    criticalLens: {
-      interpretations: [
-        {
-          title: "The Supernatural and the Human Psyche",
-          description: "The ghost's appearance can be interpreted as either a supernatural phenomenon or a manifestation of Macbeth's guilt-ridden conscience.",
-          critic: "Dr. Sarah Johnson"
-        },
-        {
-          title: "The Nature of Power",
-          description: "The banquet scene reveals how power can isolate and corrupt, even in moments of celebration.",
-          critic: "Dr. James Wilson"
-        },
-        {
-          title: "The Role of Guilt",
-          description: "The empty chair symbolizes the weight of Macbeth's guilt and the consequences of his actions.",
-          critic: "Prof. David Thompson"
-        }
-      ],
-      criticQuotes: [
-        {
-          text: "The ghost is a projection of Macbeth's guilty conscience, a psychological manifestation of his inner turmoil.",
-          critic: "Harold Bloom",
-          source: "Shakespeare: The Invention of the Human"
-        },
-        {
-          text: "The banquet scene represents the moment when Macbeth's power begins to unravel, as his guilt becomes visible to others.",
-          critic: "A.C. Bradley",
-          source: "Shakespearean Tragedy"
-        }
-      ],
-      adaptations: [
-        {
-          title: "Macbeth (2015)",
-          description: "Justin Kurzel's adaptation emphasizes the psychological horror of the ghost scene.",
-          differences: [
-            "Uses realistic psychological horror",
-            "Emphasizes PTSD and trauma",
-            "Blends supernatural and psychological elements"
-          ]
-        },
-        {
-          title: "Macbeth (1971)",
-          description: "Roman Polanski's adaptation presents the banquet scene with a focus on the supernatural.",
-          differences: [
-            "Uses visual effects to enhance the ghost's appearance",
-            "Emphasizes the contrast between celebration and horror",
-            "Focuses on the supernatural elements"
-          ]
-        }
-      ]
-    },
-    modernTranslation: {
-      original: "The table's full.",
-      modern: "All the seats are taken.",
-      explanation: "Macbeth's seemingly simple statement carries deep irony, as he sees Banquo's ghost in what appears to others to be an empty chair."
-    },
-    whatIfScenarios: [
-      {
-        id: "whatif14",
-        title: "What if Banquo had attended the banquet?",
-        description: "Exploring how the story might change if Banquo had been present at the banquet.",
-        originalChoice: "Address the empty chair and acknowledge Banquo's absence",
-        alternativeChoice: "Banquo attends the banquet",
-        consequences: [
-          "The ghost might not have appeared",
-          "Different power dynamics might have emerged",
-          "The investigation might have taken a different turn",
-          "Macbeth might have had to face Banquo directly"
-        ]
-      },
-      {
-        id: "whatif15",
-        title: "What if the guests had seen the ghost?",
-        description: "Exploring how the story might change if the guests had also seen Banquo's ghost.",
-        originalChoice: "Ignore the empty chair and continue the feast",
-        alternativeChoice: "The guests see the ghost as well",
-        consequences: [
-          "The supernatural elements might have been confirmed",
-          "Different power dynamics might have emerged",
-          "The investigation might have taken a different turn",
-          "Macbeth might have had to explain the ghost's presence"
-        ]
+        text: "Express doubt about their guilt",
+        nextScene: "scene3E",
+        ambitionChange: -15
       }
     ]
   },
   {
     id: "scene4C",
-    title: "The Murder of Banquo",
-    text: "You've grown increasingly paranoid about Banquo and his son Fleance. The witches' prophecy about Banquo's descendants becoming kings haunts you. You meet with two murderers, manipulating them by questioning their manhood and blaming Banquo for their misfortunes.",
-    quote: "For Banquo's issue have I filed my mind; For them the gracious Duncan have I murdered.",
-    quoteSource: "Act 3, Scene 1",
+    title: "The Frame-up",
+    text: "You've decided to frame someone else for Duncan's murder. The evidence you plant points to one of Duncan's loyal servants. The court is in chaos.",
+    quote: "False face must hide what the false heart doth know.",
+    quoteSource: "Act 1, Scene 7",
     choices: [
       {
         label: "A",
-        text: "Call off the murder and face your guilt",
-        nextScene: "scene5C",
-        ambitionChange: -20
+        text: "Strengthen the evidence",
+        nextScene: "scene4E",
+        ambitionChange: +25
       },
       {
         label: "B",
-        text: "Proceed with Banquo's murder",
-        nextScene: "scene4B",
-        ambitionChange: +30
+        text: "Show mercy to the accused",
+        nextScene: "scene3E",
+        ambitionChange: -10
       }
     ]
   },
   {
     id: "scene4D",
-    title: "The Second Prophecy",
-    text: "You return to the witches, seeking more knowledge. They show you three apparitions: an armed head warning of Macduff, a bloody child saying none of woman born shall harm you, and a crowned child with a tree saying you won't be vanquished until Birnam Wood comes to Dunsinane.",
-    quote: "Double, double toil and trouble; Fire burn, and cauldron bubble.",
-    quoteSource: "Act 4, Scene 1",
+    title: "The Power Struggle",
+    text: "You've chosen to follow Lady Macbeth's advice to maintain power. The court is divided, with some nobles supporting you and others growing suspicious.",
+    quote: "What's done cannot be undone.",
+    quoteSource: "Act 5, Scene 1",
     choices: [
       {
         label: "A",
-        text: "Trust in the prophecies and grow more tyrannical",
-        nextScene: "scene5B",
-        ambitionChange: +35
+        text: "Consolidate your power",
+        nextScene: "scene4E",
+        ambitionChange: +20
       },
       {
         label: "B",
-        text: "Question the prophecies and seek redemption",
-        nextScene: "scene5D",
+        text: "Show mercy to your enemies",
+        nextScene: "scene3E",
+        ambitionChange: -15
+      }
+    ]
+  },
+  {
+    id: "scene4E",
+    title: "The Consequences",
+    text: "You've been caught in the act of murder. The court is in chaos, and suspicion falls on the guards. You must decide how to handle the consequences.",
+    quote: "I have done the deed. Didst thou not hear a noise?",
+    quoteSource: "Act 2, Scene 2",
+    choices: [
+      {
+        label: "A",
+        text: "Confess your intentions to Duncan",
+        nextScene: "scene4E",
         ambitionChange: -25
+      },
+      {
+        label: "B",
+        text: "Keep your thoughts to yourself",
+        nextScene: "scene3E",
+        ambitionChange: -10
       }
     ]
   },
@@ -1339,7 +1001,7 @@ export const scenes: Scene[] = [
   {
     id: "scene5C",
     title: "Lady Macbeth's Intervention",
-    text: "Lady Macbeth dismisses the guests and confronts you about your behavior. She questions your manhood and resolve, trying to help you regain composure. Her words are sharp, but you sense her growing concern for your mental state.",
+    text: "Lady Macbeth dismisses the guests and confronts you about your behavior. She questions your manhood and determination, trying to help you regain composure. Her words are sharp, but you sense her growing concern for your mental state.",
     quote: "O proper stuff! This is the very painting of your fear.",
     quoteSource: "Act 3, Scene 4",
     choices: [
@@ -1480,7 +1142,7 @@ export const scenes: Scene[] = [
       },
       {
         label: "C",
-        text: "Use the prophecies to strengthen your resolve",
+        text: "Use the prophecies to strengthen your determination",
         nextScene: "scene5G",
         ambitionChange: 20,
         guiltChange: -5
@@ -1534,7 +1196,7 @@ export const scenes: Scene[] = [
   {
     id: "scene1A",
     title: "The Battlefield",
-    text: "You stand victorious on the battlefield, having defeated the traitorous Macdonwald. The Captain describes your bravery to King Duncan, saying you 'unseamed him from the nave to th'chaps.' Ross arrives with news of your victory over the Norwegian forces, calling you 'Bellona's bridegroom.'",
+    text: "Macbeth stands victorious on the battlefield, having defeated Macdonwald. The air is thick with the scent of blood and victory. The Captain describes your bravery to King Duncan, saying you 'unseamed him from the nave to th'chaps.' Ross arrives with news of your victory over the Norwegian forces, calling you 'Bellona's bridegroom.'",
     quote: "For brave Macbeth—well he deserves that name—Disdaining fortune, with his brandished steel, Which smoked with bloody execution.",
     quoteSource: "Act 1, Scene 2",
     choices: [
@@ -1550,47 +1212,317 @@ export const scenes: Scene[] = [
         nextScene: "scene1",
         ambitionChange: +10
       }
-    ]
-  },
-  {
-    id: "scene2C",
-    title: "The Letter",
-    text: "Lady Macbeth reads your letter about the witches' prophecy. She fears you are 'too full o' the milk of human kindness' to seize the crown. She calls upon dark spirits to 'unsex' her and fill her with cruelty. When you arrive, she immediately begins to manipulate you.",
-    quote: "Come, you spirits that tend on mortal thoughts, unsex me here, and fill me from the crown to the toe top-full of direst cruelty!",
-    quoteSource: "Act 1, Scene 5",
-    choices: [
+    ],
+    criticalLens: {
+      interpretations: [
+        {
+          title: "The Hero's Introduction",
+          description: "This scene establishes Macbeth as a heroic figure, setting up the tragic fall that will follow.",
+          critic: "Dr. Sarah Johnson"
+        }
+      ],
+      criticQuotes: [
+        {
+          text: "The battlefield scene presents Macbeth at his most noble, making his subsequent fall all the more tragic.",
+          critic: "A.C. Bradley",
+          source: "Shakespearean Tragedy"
+        }
+      ],
+      adaptations: [
+        {
+          title: "Macbeth (2015)",
+          description: "Justin Kurzel's adaptation emphasizes the brutality of the battlefield and its psychological impact on Macbeth.",
+          differences: [
+            "Uses realistic battle sequences",
+            "Focuses on the physical toll of war",
+            "Emphasizes the transition from warrior to king"
+          ]
+        }
+      ]
+    },
+    modernTranslation: {
+      original: "For brave Macbeth—well he deserves that name—Disdaining fortune, with his brandished steel, Which smoked with bloody execution.",
+      modern: "For brave Macbeth—he truly deserves that title—defying fate with his sword, which was covered in the smoke of bloody killing.",
+      explanation: "The Captain describes Macbeth's bravery in battle, emphasizing his skill and courage."
+    },
+    whatIfScenarios: [
       {
-        label: "A",
-        text: "Resist her influence and maintain your honor",
-        nextScene: "scene3C",
-        ambitionChange: -15
-      },
-      {
-        label: "B",
-        text: "Allow her to strengthen your resolve",
-        nextScene: "scene3A",
-        ambitionChange: +20
+        id: "whatif1",
+        title: "What if Macbeth had lost the battle?",
+        description: "Exploring how the story might change if Macbeth had been defeated.",
+        originalChoice: "Accept the praise humbly and focus on duty",
+        alternativeChoice: "Macbeth loses the battle",
+        consequences: [
+          "No prophecy from the witches",
+          "Different power dynamics in Scotland",
+          "Alternative paths to power",
+          "Changed relationship with Duncan"
+        ]
       }
     ]
   },
   {
-    id: "scene3E",
-    title: "The Dagger Soliloquy",
-    text: "Alone in the castle, you see a dagger floating before you. It leads you toward Duncan's chamber. You question whether it's real or a 'dagger of the mind.' The handle points toward your hand, and drops of blood appear on its blade.",
-    quote: "Is this a dagger which I see before me, The handle toward my hand? Come, let me clutch thee.",
-    quoteSource: "Act 2, Scene 1",
+    id: "scene3F",
+    title: "The Guards' Fate",
+    text: "You kill the guards to cover your tracks. Their blood stains your hands and clothes. The other guards and nobles are suspicious, but your position as Thane of Cawdor gives you authority. Lady Macbeth helps you clean up and maintain your composure.",
+    quote: "The sleeping and the dead are but as pictures; 'tis the eye of childhood that fears a painted devil.",
+    quoteSource: "Act 2, Scene 2",
     choices: [
       {
         label: "A",
-        text: "Recognize this as a sign to stop",
-        nextScene: "scene4A",
-        ambitionChange: -20
+        text: "Claim the guards were the murderers",
+        nextScene: "scene4E",
+        ambitionChange: +20,
+        guiltChange: +15
       },
       {
         label: "B",
-        text: "Follow the dagger's guidance",
-        nextScene: "scene3D",
-        ambitionChange: +25
+        text: "Express regret for killing the guards",
+        nextScene: "scene3E",
+        ambitionChange: -10,
+        guiltChange: +10
+      },
+      {
+        label: "C",
+        text: "Blame the guards' deaths on an intruder",
+        nextScene: "scene3G",
+        ambitionChange: +15,
+        guiltChange: +10
+      },
+      {
+        label: "D",
+        text: "Seek Lady Macbeth's help to maintain the lie",
+        nextScene: "scene3H",
+        ambitionChange: +10,
+        guiltChange: +5
+      }
+    ],
+    criticalLens: {
+      interpretations: [
+        {
+          title: "The Psychology of Cover-up",
+          description: "Macbeth's decision to kill the guards reveals his growing willingness to commit further violence to maintain his position.",
+          critic: "Dr. Sarah Johnson"
+        }
+      ],
+      criticQuotes: [
+        {
+          text: "The murder of the guards represents the point where Macbeth fully embraces his role as a tyrant.",
+          critic: "Dr. Robert Smith",
+          source: "Shakespeare's Tragic Heroes"
+        }
+      ],
+      quotes: [
+        {
+          text: "The murder of the guards marks a point of no return in Macbeth's descent into tyranny.",
+          critic: "Prof. Michael Brown",
+          source: "Shakespearean Tragedy: Power and Morality"
+        }
+      ],
+      adaptations: [
+        {
+          title: "Macbeth (2010)",
+          description: "Patrick Stewart's portrayal emphasizes the cold calculation behind killing the guards.",
+          differences: [
+            "Modern military setting",
+            "Emphasis on chain of command",
+            "Focus on political implications"
+          ]
+        }
+      ]
+    },
+    modernTranslation: {
+      original: "The sleeping and the dead are but as pictures; 'tis the eye of childhood that fears a painted devil.",
+      modern: "The sleeping and the dead are just like pictures; only a child would be afraid of a painted devil.",
+      explanation: "Lady Macbeth tries to rationalize the murders, suggesting that only the weak would be troubled by them."
+    },
+    whatIfScenarios: [
+      {
+        id: "whatif5",
+        title: "What if the guards had survived?",
+        description: "Exploring how the guards' survival might have changed the course of events.",
+        originalChoice: "Kill the guards to cover your tracks",
+        alternativeChoice: "Let the guards live and try to convince them to stay silent",
+        consequences: [
+          "Potential witnesses to the crime",
+          "Different power dynamics in the castle",
+          "Possibility of blackmail or betrayal",
+          "Alternative paths to maintaining power"
+        ]
+      }
+    ]
+  },
+  {
+    id: "scene3G",
+    title: "The Frame-up",
+    text: "You decide to frame someone else for Duncan's murder. The evidence you plant points to one of Duncan's loyal servants. The court is in chaos, with accusations flying and trust breaking down among the nobles.",
+    quote: "False face must hide what the false heart doth know.",
+    quoteSource: "Act 1, Scene 7",
+    choices: [
+      {
+        label: "A",
+        text: "Strengthen the evidence against your chosen scapegoat",
+        nextScene: "scene4E",
+        ambitionChange: +25,
+        guiltChange: +20
+      },
+      {
+        label: "B",
+        text: "Show mercy to the accused but maintain their guilt",
+        nextScene: "scene3F",
+        ambitionChange: +10,
+        guiltChange: +15
+      },
+      {
+        label: "C",
+        text: "Let the accused defend themselves",
+        nextScene: "scene3E",
+        ambitionChange: -5,
+        guiltChange: +10
+      },
+      {
+        label: "D",
+        text: "Seek Lady Macbeth's advice on the frame-up",
+        nextScene: "scene3H",
+        ambitionChange: +15,
+        guiltChange: +10
+      }
+    ],
+    criticalLens: {
+      interpretations: [
+        {
+          title: "The Nature of Deception",
+          description: "Macbeth's decision to frame an innocent person reveals his growing moral corruption and political cunning.",
+          critic: "Dr. Emily Wilson"
+        }
+      ],
+      criticQuotes: [
+        {
+          text: "The frame-up scene reveals how power can corrupt even the most noble intentions.",
+          critic: "Dr. Elizabeth White",
+          source: "Power and Corruption in Shakespeare"
+        }
+      ],
+      quotes: [
+        {
+          text: "The frame-up scene demonstrates how power corrupts and how the innocent often suffer for the crimes of the powerful.",
+          critic: "Prof. James Thompson",
+          source: "Macbeth: A Critical Analysis"
+        }
+      ],
+      adaptations: [
+        {
+          title: "Macbeth (2015)",
+          description: "Justin Kurzel's adaptation emphasizes the political implications of the frame-up.",
+          differences: [
+            "Focus on court politics",
+            "Emphasis on power dynamics",
+            "Modern parallels to political corruption"
+          ]
+        }
+      ]
+    },
+    modernTranslation: {
+      original: "False face must hide what the false heart doth know.",
+      modern: "A false appearance must hide what the deceitful heart knows.",
+      explanation: "Macbeth acknowledges the need to maintain a facade while knowing the truth of his actions."
+    },
+    whatIfScenarios: [
+      {
+        id: "whatif6",
+        title: "What if the frame-up was discovered?",
+        description: "Exploring how the discovery of the frame-up might have changed the course of events.",
+        originalChoice: "Frame someone else for the murder",
+        alternativeChoice: "The frame-up is discovered by a clever noble",
+        consequences: [
+          "Loss of trust among the nobles",
+          "Potential rebellion",
+          "Different power dynamics in the court",
+          "Alternative paths to maintaining control"
+        ]
+      }
+    ]
+  },
+  {
+    id: "scene3H",
+    title: "Lady Macbeth's Counsel",
+    text: "You seek Lady Macbeth's guidance in the aftermath of Duncan's murder. She is both supportive and calculating, helping you maintain your composure while planning the next steps. Her strength contrasts with your growing unease.",
+    quote: "What's done cannot be undone.",
+    quoteSource: "Act 5, Scene 1",
+    choices: [
+      {
+        label: "A",
+        text: "Follow her advice to maintain power",
+        nextScene: "scene4E",
+        ambitionChange: +20,
+        guiltChange: +10
+      },
+      {
+        label: "B",
+        text: "Express your growing guilt and doubt",
+        nextScene: "scene3E",
+        ambitionChange: -10,
+        guiltChange: +15
+      },
+      {
+        label: "C",
+        text: "Question her role in the murder",
+        nextScene: "scene3F",
+        ambitionChange: -5,
+        guiltChange: +10
+      },
+      {
+        label: "D",
+        text: "Blame the witches for influencing you both",
+        nextScene: "scene3G",
+        ambitionChange: 0,
+        guiltChange: +5
+      }
+    ],
+    criticalLens: {
+      interpretations: [
+        {
+          title: "Gender and Power",
+          description: "Lady Macbeth's role in guiding Macbeth reveals the complex dynamics of gender and power in the play.",
+          critic: "Dr. Sarah Johnson"
+        }
+      ],
+      criticQuotes: [
+        {
+          text: "The scene highlights the shifting power dynamic between Macbeth and Lady Macbeth.",
+          critic: "Prof. Michael Brown"
+        }
+      ],
+      adaptations: [
+        {
+          title: "Macbeth (2010)",
+          description: "Patrick Stewart's adaptation emphasizes the psychological complexity of the Macbeths' relationship.",
+          differences: [
+            "Focus on marital dynamics",
+            "Emphasis on power sharing",
+            "Modern parallels to power couples"
+          ]
+        }
+      ]
+    },
+    modernTranslation: {
+      original: "What's done cannot be undone.",
+      modern: "What's done is done and can't be changed.",
+      explanation: "Lady Macbeth acknowledges the irreversible nature of their actions while trying to move forward."
+    },
+    whatIfScenarios: [
+      {
+        id: "whatif7",
+        title: "What if Lady Macbeth had shown remorse?",
+        description: "Exploring how Lady Macbeth's potential remorse might have changed the course of events.",
+        originalChoice: "Seek Lady Macbeth's guidance",
+        alternativeChoice: "Lady Macbeth shows signs of guilt and regret",
+        consequences: [
+          "Different power dynamics in their relationship",
+          "Alternative approaches to maintaining power",
+          "Potential for redemption or confession",
+          "Changed psychological impact on both characters"
+        ]
       }
     ]
   },
@@ -1605,13 +1537,15 @@ export const scenes: Scene[] = [
         label: "A",
         text: "Trust the murderers to do the job",
         nextScene: "scene4B",
-        ambitionChange: +25
+        ambitionChange: +25,
+        guiltChange: +15
       },
       {
         label: "B",
         text: "Join them to ensure success",
         nextScene: "scene4F",
-        ambitionChange: +35
+        ambitionChange: +35,
+        guiltChange: +25
       }
     ]
   },
@@ -1626,13 +1560,15 @@ export const scenes: Scene[] = [
         label: "A",
         text: "Focus on consolidating your power",
         nextScene: "scene4D",
-        ambitionChange: +30
+        ambitionChange: +30,
+        guiltChange: +20
       },
       {
         label: "B",
         text: "Hunt down Fleance immediately",
         nextScene: "scene5E",
-        ambitionChange: +40
+        ambitionChange: +40,
+        guiltChange: +30
       }
     ]
   },
@@ -1906,255 +1842,6 @@ export const scenes: Scene[] = [
           "Different power dynamics might have emerged",
           "The cycle of violence might have continued",
           "The kingdom might have suffered more"
-        ]
-      }
-    ]
-  },
-  {
-    id: "scene3F",
-    title: "The Guards' Fate",
-    text: "You kill the guards to cover your tracks. Their blood stains your hands and clothes. The other guards and nobles are suspicious, but your position as Thane of Cawdor gives you authority. Lady Macbeth helps you clean up and maintain your composure.",
-    quote: "The sleeping and the dead are but as pictures; 'tis the eye of childhood that fears a painted devil.",
-    quoteSource: "Act 2, Scene 2",
-    choices: [
-      {
-        label: "A",
-        text: "Claim the guards were the murderers",
-        nextScene: "scene4B",
-        ambitionChange: +20,
-        guiltChange: +15
-      },
-      {
-        label: "B",
-        text: "Express regret for killing the guards",
-        nextScene: "scene3E",
-        ambitionChange: -10,
-        guiltChange: +10
-      },
-      {
-        label: "C",
-        text: "Blame the guards' deaths on an intruder",
-        nextScene: "scene3G",
-        ambitionChange: +15,
-        guiltChange: +10
-      },
-      {
-        label: "D",
-        text: "Seek Lady Macbeth's help to maintain the lie",
-        nextScene: "scene3H",
-        ambitionChange: +10,
-        guiltChange: +5
-      }
-    ],
-    criticalLens: {
-      interpretations: [
-        {
-          title: "The Psychology of Cover-up",
-          description: "Macbeth's decision to kill the guards reveals his growing willingness to commit further violence to maintain his position.",
-          critic: "Dr. Sarah Johnson"
-        }
-      ],
-      quotes: [
-        {
-          text: "The murder of the guards marks a point of no return in Macbeth's descent into tyranny.",
-          critic: "Prof. Michael Brown"
-        }
-      ],
-      adaptations: [
-        {
-          title: "Macbeth (2010)",
-          description: "Patrick Stewart's portrayal emphasizes the cold calculation behind killing the guards.",
-          differences: [
-            "Modern military setting",
-            "Emphasis on chain of command",
-            "Focus on political implications"
-          ]
-        }
-      ]
-    },
-    modernTranslation: {
-      original: "The sleeping and the dead are but as pictures; 'tis the eye of childhood that fears a painted devil.",
-      modern: "The sleeping and the dead are just like pictures; only a child would be afraid of a painted devil.",
-      explanation: "Lady Macbeth tries to rationalize the murders, suggesting that only the weak would be troubled by them."
-    },
-    whatIfScenarios: [
-      {
-        id: "whatif5",
-        title: "What if the guards had survived?",
-        description: "Exploring how the guards' survival might have changed the course of events.",
-        originalChoice: "Kill the guards to cover your tracks",
-        alternativeChoice: "Let the guards live and try to convince them to stay silent",
-        consequences: [
-          "Potential witnesses to the crime",
-          "Different power dynamics in the castle",
-          "Possibility of blackmail or betrayal",
-          "Alternative paths to maintaining power"
-        ]
-      }
-    ]
-  },
-  {
-    id: "scene3G",
-    title: "The Frame-up",
-    text: "You decide to frame someone else for Duncan's murder. The evidence you plant points to one of Duncan's loyal servants. The court is in chaos, with accusations flying and trust breaking down among the nobles.",
-    quote: "False face must hide what the false heart doth know.",
-    quoteSource: "Act 1, Scene 7",
-    choices: [
-      {
-        label: "A",
-        text: "Strengthen the evidence against your chosen scapegoat",
-        nextScene: "scene4C",
-        ambitionChange: +25,
-        guiltChange: +20
-      },
-      {
-        label: "B",
-        text: "Show mercy to the accused but maintain their guilt",
-        nextScene: "scene3F",
-        ambitionChange: +10,
-        guiltChange: +15
-      },
-      {
-        label: "C",
-        text: "Let the accused defend themselves",
-        nextScene: "scene3E",
-        ambitionChange: -5,
-        guiltChange: +10
-      },
-      {
-        label: "D",
-        text: "Seek Lady Macbeth's advice on the frame-up",
-        nextScene: "scene3H",
-        ambitionChange: +15,
-        guiltChange: +10
-      }
-    ],
-    criticalLens: {
-      interpretations: [
-        {
-          title: "The Nature of Deception",
-          description: "Macbeth's decision to frame an innocent person reveals his growing moral corruption and political cunning.",
-          critic: "Dr. Emily Wilson"
-        }
-      ],
-      quotes: [
-        {
-          text: "The frame-up scene demonstrates how power corrupts and how the innocent often suffer for the crimes of the powerful.",
-          critic: "Prof. James Thompson"
-        }
-      ],
-      adaptations: [
-        {
-          title: "Macbeth (2015)",
-          description: "Justin Kurzel's adaptation emphasizes the political implications of the frame-up.",
-          differences: [
-            "Focus on court politics",
-            "Emphasis on power dynamics",
-            "Modern parallels to political corruption"
-          ]
-        }
-      ]
-    },
-    modernTranslation: {
-      original: "False face must hide what the false heart doth know.",
-      modern: "A false appearance must hide what the deceitful heart knows.",
-      explanation: "Macbeth acknowledges the need to maintain a facade while knowing the truth of his actions."
-    },
-    whatIfScenarios: [
-      {
-        id: "whatif6",
-        title: "What if the frame-up was discovered?",
-        description: "Exploring how the discovery of the frame-up might have changed the course of events.",
-        originalChoice: "Frame someone else for the murder",
-        alternativeChoice: "The frame-up is discovered by a clever noble",
-        consequences: [
-          "Loss of trust among the nobles",
-          "Potential rebellion",
-          "Different power dynamics in the court",
-          "Alternative paths to maintaining control"
-        ]
-      }
-    ]
-  },
-  {
-    id: "scene3H",
-    title: "Lady Macbeth's Counsel",
-    text: "You seek Lady Macbeth's guidance in the aftermath of Duncan's murder. She is both supportive and calculating, helping you maintain your composure while planning the next steps. Her strength contrasts with your growing unease.",
-    quote: "What's done cannot be undone.",
-    quoteSource: "Act 5, Scene 1",
-    choices: [
-      {
-        label: "A",
-        text: "Follow her advice to maintain power",
-        nextScene: "scene4D",
-        ambitionChange: +20,
-        guiltChange: +10
-      },
-      {
-        label: "B",
-        text: "Express your growing guilt and doubt",
-        nextScene: "scene3E",
-        ambitionChange: -10,
-        guiltChange: +15
-      },
-      {
-        label: "C",
-        text: "Question her role in the murder",
-        nextScene: "scene3F",
-        ambitionChange: -5,
-        guiltChange: +10
-      },
-      {
-        label: "D",
-        text: "Blame the witches for influencing you both",
-        nextScene: "scene3G",
-        ambitionChange: 0,
-        guiltChange: +5
-      }
-    ],
-    criticalLens: {
-      interpretations: [
-        {
-          title: "Gender and Power",
-          description: "Lady Macbeth's role in guiding Macbeth reveals the complex dynamics of gender and power in the play.",
-          critic: "Dr. Sarah Johnson"
-        }
-      ],
-      criticQuotes: [
-        {
-          text: "The scene highlights the shifting power dynamic between Macbeth and Lady Macbeth.",
-          critic: "Prof. Michael Brown"
-        }
-      ],
-      adaptations: [
-        {
-          title: "Macbeth (2010)",
-          description: "Patrick Stewart's adaptation emphasizes the psychological complexity of the Macbeths' relationship.",
-          differences: [
-            "Focus on marital dynamics",
-            "Emphasis on power sharing",
-            "Modern parallels to power couples"
-          ]
-        }
-      ]
-    },
-    modernTranslation: {
-      original: "What's done cannot be undone.",
-      modern: "What's done is done and can't be changed.",
-      explanation: "Lady Macbeth acknowledges the irreversible nature of their actions while trying to move forward."
-    },
-    whatIfScenarios: [
-      {
-        id: "whatif7",
-        title: "What if Lady Macbeth had shown remorse?",
-        description: "Exploring how Lady Macbeth's potential remorse might have changed the course of events.",
-        originalChoice: "Seek Lady Macbeth's guidance",
-        alternativeChoice: "Lady Macbeth shows signs of guilt and regret",
-        consequences: [
-          "Different power dynamics in their relationship",
-          "Alternative approaches to maintaining power",
-          "Potential for redemption or confession",
-          "Changed psychological impact on both characters"
         ]
       }
     ]

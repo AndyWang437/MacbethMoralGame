@@ -4,8 +4,16 @@ import { EnhancedUI } from './EnhancedUI';
 import { CriticalAnalysisModal } from './CriticalAnalysisModal';
 import { WhatIfScenariosModal } from './WhatIfScenarios';
 import { CharacterPsychologyModal } from './CharacterPsychologyModal';
-import { updateGameState } from '../utils/gameState';
-import { getEnding } from '../utils/endings';
+import { updateGameState, initialGameState } from '../utils/gameState';
+import { getEndingDescription } from '../utils/endings';
+import { RelationshipsModal } from './RelationshipsModal';
+
+const determineEnding = (gameState: GameState): string => {
+  if (gameState.guilt >= 80) return 'tyrant';
+  if (gameState.guilt >= 50) return 'tragic';
+  if (gameState.guilt >= 20) return 'balanced';
+  return 'redemption';
+};
 
 interface GameProps {
   scenes: Scene[];
@@ -13,33 +21,33 @@ interface GameProps {
 }
 
 export const Game: React.FC<GameProps> = ({ scenes, onEndGame }) => {
-  const [gameState, setGameState] = useState<GameState>({
-    currentScene: 'scene1',
-    ambition: 50,
-    guilt: 0,
-    pathHistory: [],
-    collectibles: [],
-    relationships: {
-      'Lady Macbeth': { trust: 50, loyalty: 50, fear: 0 },
-      'Banquo': { trust: 50, loyalty: 50, fear: 0 },
-      'Duncan': { trust: 50, loyalty: 50, fear: 0 },
-      'Macduff': { trust: 50, loyalty: 50, fear: 0 },
-    }
-  });
+  const [gameState, setGameState] = useState<GameState>(initialGameState);
 
   const [showCriticalAnalysis, setShowCriticalAnalysis] = useState(false);
   const [showWhatIf, setShowWhatIf] = useState(false);
   const [showCharacterPsychology, setShowCharacterPsychology] = useState(false);
+  const [showRelationships, setShowRelationships] = useState(false);
+  const [showCollectibles, setShowCollectibles] = useState(false);
+  const [showPathHistory, setShowPathHistory] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   const currentScene = scenes.find(s => s.id === gameState.currentScene);
 
   const handleChoice = (choice: Choice) => {
+    console.log('=== HANDLE CHOICE CALLED ===');
+    console.log('Choice object:', JSON.stringify(choice, null, 2));
+    console.log('Current game state:', JSON.stringify(gameState, null, 2));
+    
     if (choice.nextScene === 'end') {
-      onEndGame(getEnding(gameState));
+      const endingType = determineEnding(gameState);
+      onEndGame(getEndingDescription(endingType));
       return;
     }
 
     const newState = updateGameState(gameState, choice, currentScene);
+    console.log('=== NEW STATE CREATED ===');
+    console.log('New state:', JSON.stringify(newState, null, 2));
     setGameState(newState);
   };
 
@@ -47,11 +55,15 @@ export const Game: React.FC<GameProps> = ({ scenes, onEndGame }) => {
     <div className="game-container">
       <EnhancedUI
         gameState={gameState}
-        onShowRelationships={() => {}}
+        onShowRelationships={() => setShowRelationships(true)}
         onShowCriticalAnalysis={() => setShowCriticalAnalysis(true)}
         onShowModernTranslation={() => {}}
         onShowWhatIf={() => setShowWhatIf(true)}
         onShowCharacterPsychology={() => setShowCharacterPsychology(true)}
+        onShowCollectibles={() => setShowCollectibles(true)}
+        onShowPathHistory={() => setShowPathHistory(true)}
+        onShowSettings={() => setShowSettings(true)}
+        onShowHelp={() => setShowHelp(true)}
       />
 
       {/* Main game content */}
@@ -70,7 +82,11 @@ export const Game: React.FC<GameProps> = ({ scenes, onEndGame }) => {
           {currentScene?.choices.map((choice) => (
             <button
               key={choice.label}
-              onClick={() => handleChoice(choice)}
+              onClick={() => {
+                console.log('=== CHOICE BUTTON CLICKED ===');
+                console.log('Choice clicked:', choice.label);
+                handleChoice(choice);
+              }}
               className="choice-button"
             >
               {choice.text}
@@ -96,7 +112,15 @@ export const Game: React.FC<GameProps> = ({ scenes, onEndGame }) => {
 
       {showCharacterPsychology && (
         <CharacterPsychologyModal
+          currentScene={currentScene}
           onClose={() => setShowCharacterPsychology(false)}
+        />
+      )}
+
+      {showRelationships && (
+        <RelationshipsModal
+          relationships={gameState.relationships}
+          onClose={() => setShowRelationships(false)}
         />
       )}
     </div>
