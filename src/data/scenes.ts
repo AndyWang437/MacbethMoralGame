@@ -598,7 +598,7 @@ export const scenes: Scene[] = [
       {
         label: "D",
         text: "Claim the witches made you do it",
-        nextScene: "scene3H",
+        nextScene: "scene5F",
         ambitionChange: 0,
         guiltChange: +5
       }
@@ -745,13 +745,13 @@ export const scenes: Scene[] = [
       {
         label: "A",
         text: "Confess your intentions to Duncan",
-        nextScene: "scene4E",
+        nextScene: "scene4A",
         ambitionChange: -25
       },
       {
         label: "B",
         text: "Keep your thoughts to yourself",
-        nextScene: "scene3E",
+        nextScene: "scene5B",
         ambitionChange: -10
       }
     ]
@@ -1474,7 +1474,7 @@ export const scenes: Scene[] = [
       {
         label: "D",
         text: "Blame the witches for influencing you both",
-        nextScene: "scene3G",
+        nextScene: "scene5F",
         ambitionChange: 0,
         guiltChange: +5
       }
