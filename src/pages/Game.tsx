@@ -11,7 +11,7 @@ import { getCharacterPortrait } from '../utils/characters';
 export default function Game() {
   const navigate = useNavigate();
   const [gameState, setGameState] = useState<GameState>({
-    currentScene: 'scene1A',
+    currentScene: 'scene1',
     ambition: 50,
     guilt: 20,
     pathHistory: [],
